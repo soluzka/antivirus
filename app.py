@@ -400,15 +400,23 @@ def yara_scan():
         elif scan_type == 'all_folders':
             # Scan all monitored directories
             start_time = time.time()
-            all_results = scan_all_folders_with_yara(DEFAULT_MONITORED_DIRECTORIES)
+            scan_data = scan_all_folders_with_yara(DEFAULT_MONITORED_DIRECTORIES)
             scan_time = time.time() - start_time
             
-            # Process and return results
+            # The scan_data now contains a dictionary with 'results' and 'stats' keys
+            results = scan_data.get('results', [])
+            stats = scan_data.get('stats', {})
+            
+            # Process and return results with enhanced statistics
             return jsonify({
                 'folders': DEFAULT_MONITORED_DIRECTORIES,
-                'matches': len(all_results),
+                'matches': stats.get('total_matches', 0),
                 'scan_time': f"{scan_time:.2f}s",
-                'results': all_results,
+                'results': results,
+                'stats': stats,
+                'total_files_scanned': stats.get('total_files_scanned', 0),
+                'total_high_risk_files': stats.get('total_high_risk_files', 0),
+                'total_subdirectories': stats.get('total_subdirectories', 0),
                 'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             })
             

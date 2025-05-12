@@ -27,6 +27,92 @@
         .domain-name { margin-left: 0; }
         .reason { margin-left: 1em; color: #8e44ad; }
         .last-seen { margin-left: 1em; }
+        
+        /* Network monitoring directory styles */
+        .directory-details {
+            margin-top: 5px;
+            padding-left: 15px;
+            font-size: 0.9em;
+            color: #555;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .high-risk-files {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        /* Styles for all monitored paths section */
+        .all-monitored-paths {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+        
+        .toggle-all-paths {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.85em;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.2s;
+        }
+        
+        .toggle-all-paths:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .all-paths-list {
+            list-style-type: none;
+            padding-left: 10px;
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            border-left: 2px solid #ddd;
+        }
+        
+        .all-paths-list li {
+            padding: 3px 5px;
+            margin-bottom: 3px;
+            border-bottom: 1px dotted #eee;
+            font-size: 0.9em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .file-count {
+            color: #3498db;
+        }
+        .subdir-count {
+            color: #9b59b6;
+        }
+        .directories-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        .directories-list li {
+            padding: 8px;
+            margin-bottom: 8px;
+            border-left: 3px solid #3498db;
+            padding-left: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .directory-active {
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .directory-inactive {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 5px;
+        }
     </style>
 
 </head>
@@ -622,12 +708,64 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                 const status = data.monitoring_status;
                 const statusDiv = document.createElement('div');
                 statusDiv.className = 'monitoring-status';
+                // Calculate total directories and subdirectories for clearer display
+                const rootDirsCount = data.monitored_directories ? data.monitored_directories.length : 0;
+                const totalDirsCount = status.total_directories || 0;
+                const subdirCount = totalDirsCount - rootDirsCount;
+                
                 statusDiv.innerHTML = `
                     <p><strong>Status:</strong> <span class="${status.enabled ? 'enabled' : 'disabled'}">${status.enabled ? 'ENABLED' : 'DISABLED'}</span></p>
                     <p><strong>Last Scan:</strong> ${status.last_scan}</p>
-                    <p><strong>Total Monitored:</strong> ${status.total_directories} directories</p>
+                    <p><strong>Total Monitored:</strong> ${totalDirsCount} directories</p>
+                    <p><strong>Root Directories:</strong> ${rootDirsCount}</p>
+                    <p><strong>Subdirectories:</strong> ${subdirCount}</p>
+                    <p><strong>Total Files Monitored:</strong> ${status.total_files_monitored || 0}</p>
                 `;
                 directoriesContainer.appendChild(statusDiv);
+                
+                // Add a section to display all monitored paths (including subdirectories)
+                if (data.monitored_directories && data.monitored_directories.length > 0) {
+                    const allPathsContainer = document.createElement('div');
+                    allPathsContainer.className = 'all-monitored-paths';
+                    const pathsTitle = document.createElement('h4');
+                    pathsTitle.textContent = 'All Monitored Paths';
+                    allPathsContainer.appendChild(pathsTitle);
+                    
+                    // Add toggle button for all paths
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.className = 'toggle-all-paths';
+                    toggleBtn.innerText = 'Show All Paths';
+                    toggleBtn.onclick = function(e) {
+                        e.preventDefault();
+                        const pathsList = this.nextElementSibling;
+                        if (pathsList.style.display === 'none' || !pathsList.style.display) {
+                            pathsList.style.display = 'block';
+                            this.innerText = 'Hide All Paths';
+                        } else {
+                            pathsList.style.display = 'none';
+                            this.innerText = 'Show All Paths';
+                        }
+                    };
+                    allPathsContainer.appendChild(toggleBtn);
+                    
+                    // Create list of all paths
+                    const pathsList = document.createElement('ul');
+                    pathsList.className = 'all-paths-list';
+                    pathsList.style.display = 'none';
+                    
+                    // Sort paths for better readability
+                    const sortedPaths = [...data.monitored_directories].sort();
+                    
+                    // Add each path
+                    sortedPaths.forEach(path => {
+                        const pathItem = document.createElement('li');
+                        pathItem.innerText = path;
+                        pathsList.appendChild(pathItem);
+                    });
+                    
+                    allPathsContainer.appendChild(pathsList);
+                    directoriesContainer.appendChild(allPathsContainer);
+                }
                 
                 // Display directory list
                 if (status.directories && status.directories.length > 0) {
@@ -641,9 +779,54 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                         
                         li.innerHTML = `<span class="${statusClass}">${statusIcon}</span> ${dir.path}`;
                         
-                        // Add file count if available
-                        if (dir.file_count !== undefined) {
-                            li.innerHTML += ` <span class="file-count">(${dir.file_count} files)</span>`;
+                        // Create detailed information div with enhanced data
+                        if (dir.exists && dir.accessible) {
+                            const detailsDiv = document.createElement('div');
+                            detailsDiv.className = 'directory-details';
+                            detailsDiv.innerHTML = `
+                                <span class="file-count">Files: ${dir.file_count || 0}</span>
+                                ${dir.subdirectory_count !== undefined ? `<span class="subdir-count">Subdirectories: ${dir.subdirectory_count}</span>` : ''}
+                                ${dir.high_risk_files > 0 ? `<span class="high-risk-files">High-risk files: ${dir.high_risk_files}</span>` : ''}
+                            `;
+                            
+                            // Add subdirectories if available
+                            if (dir.subdirectories && dir.subdirectories.length > 0) {
+                                const subdirContainer = document.createElement('div');
+                                subdirContainer.className = 'subdirectories-container';
+                                
+                                // Add toggle button
+                                const toggleBtn = document.createElement('button');
+                                toggleBtn.className = 'toggle-subdirs';
+                                toggleBtn.innerText = 'Show Subdirectories';
+                                toggleBtn.onclick = function(e) {
+                                    e.preventDefault();
+                                    const subdirList = this.nextElementSibling;
+                                    if (subdirList.style.display === 'none' || !subdirList.style.display) {
+                                        subdirList.style.display = 'block';
+                                        this.innerText = 'Hide Subdirectories';
+                                    } else {
+                                        subdirList.style.display = 'none';
+                                        this.innerText = 'Show Subdirectories';
+                                    }
+                                };
+                                subdirContainer.appendChild(toggleBtn);
+                                
+                                // Create list of subdirectories
+                                const subdirList = document.createElement('ul');
+                                subdirList.className = 'subdirectories-list';
+                                subdirList.style.display = 'none'; // Initially hidden
+                                
+                                // Add each subdirectory
+                                dir.subdirectories.forEach(subdir => {
+                                    const subdirItem = document.createElement('li');
+                                    subdirItem.innerText = subdir;
+                                    subdirList.appendChild(subdirItem);
+                                });
+                                
+                                subdirContainer.appendChild(subdirList);
+                                detailsDiv.appendChild(subdirContainer);
+                            }
+                            li.appendChild(detailsDiv);
                         }
                         
                         list.appendChild(li);

@@ -275,30 +275,101 @@ def scan_file_with_yara(filepath, timeout=10):
 
 def scan_all_folders_with_yara(monitored_folders, rules_path=None):
     """
-YARA-based scanning utilities for security module.
-
-Phishing detection is available via scan_utils.scan_all_folders_for_phishing(monitored_folders),
-which will scan and quarantine files with phishing indicators.
-
-Scan all files in all monitored folders (recursively) with YARA.
-    Returns a list of results (matches and errors).
+    YARA-based scanning utilities for security module.
+    
+    Phishing detection is available via scan_utils.scan_all_folders_for_phishing(monitored_folders),
+    which will scan and quarantine files with phishing indicators.
+    
+    Scan all files in all monitored folders (recursively) with YARA.
+    Returns a dictionary with scan statistics and a list of results (matches and errors).
     """
     import os
+    
+    # Define high-risk file extensions similar to network monitor
+    high_risk_extensions = [
+        '.exe', '.dll', '.bat', '.cmd', '.ps1', '.vbs', '.js', '.wsf', '.hta', 
+        '.scr', '.pif', '.reg', '.com', '.msi', '.jar', '.jnlp', '.vbe', 
+        '.wsh', '.sys', '.inf'
+    ]
+    
     results = []
+    scan_stats = {
+        'total_directories': len(monitored_folders),
+        'total_files_scanned': 0,
+        'total_high_risk_files': 0,
+        'total_subdirectories': 0,
+        'total_matches': 0,
+        'total_errors': 0,
+        'directories': []
+    }
+    
     for folder in monitored_folders:
+        folder_stats = {
+            'path': folder,
+            'exists': os.path.exists(folder),
+            'accessible': os.path.exists(folder) and os.access(folder, os.R_OK),
+            'file_count': 0,
+            'high_risk_files': 0,
+            'subdirectory_count': 0,
+            'matches': 0,
+            'errors': 0,
+            'subdirectories': []  # List to store subdirectories
+        }
+        
+        if not folder_stats['accessible']:
+            scan_stats['directories'].append(folder_stats)
+            continue
+            
         for root, dirs, files in os.walk(folder):
+            # Add subdirectory paths and count
+            if root != folder:
+                folder_stats['subdirectory_count'] += 1
+                scan_stats['total_subdirectories'] += 1
+                # Add this subdirectory to our list (with a limit check)
+                if len(folder_stats['subdirectories']) < 100:
+                    folder_stats['subdirectories'].append(root)
+            else:
+                # Count immediate subdirectories for folder stats
+                folder_stats['subdirectory_count'] += len(dirs)
+                scan_stats['total_subdirectories'] += len(dirs)
+                
+                # Add immediate subdirectories to our list (with a limit check)
+                for subdir in dirs:
+                    if len(folder_stats['subdirectories']) < 100:
+                        subdir_path = os.path.join(folder, subdir)
+                        folder_stats['subdirectories'].append(subdir_path)
+                
             for filename in files:
                 filepath = os.path.join(root, filename)
+                folder_stats['file_count'] += 1
+                scan_stats['total_files_scanned'] += 1
+                
+                # Check if high-risk file
+                _, ext = os.path.splitext(filename)
+                if ext.lower() in high_risk_extensions:
+                    folder_stats['high_risk_files'] += 1
+                    scan_stats['total_high_risk_files'] += 1
+                
                 try:
-                    # Only pass the filepath parameter to scan_file_with_yara
+                    # Scan the file with YARA
                     matches = scan_file_with_yara(filepath)
                     if matches:
+                        folder_stats['matches'] += len(matches)
+                        scan_stats['total_matches'] += len(matches)
                         for match in matches:
                             rule_name = getattr(match, 'rule', 'Unknown rule')
                             results.append(f"YARA match ({rule_name}): {filepath}")
                 except Exception as e:
+                    folder_stats['errors'] += 1
+                    scan_stats['total_errors'] += 1
                     results.append(f"Error scanning {filepath}: {e}")
-    return results
+        
+        scan_stats['directories'].append(folder_stats)
+    
+    return {
+        'results': results,
+        'stats': scan_stats
+    }
 
 if __name__ == '__main__':
     import sys

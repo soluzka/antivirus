@@ -45,26 +45,60 @@ def get_monitored_network_directories(network_monitor):
             os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'Temp')  # System temp
         ]
         
+        # Define high-risk file extensions to monitor more carefully
+        high_risk_extensions = [
+            '.exe', '.dll', '.bat', '.cmd', '.ps1', '.vbs', '.js', '.wsf', '.hta', 
+            '.scr', '.pif', '.reg', '.com', '.msi', '.jar', '.jnlp', '.vbe', 
+            '.wsh', '.sys', '.inf'
+        ]
+        
         # Check if directories exist and are accessible
         directories = []
+        total_files_monitored = 0
+        
         for dir_path in monitored_dirs:
             exists = os.path.exists(dir_path)
             accessible = exists and os.access(dir_path, os.R_OK)
             
-            # Count files if accessible
+            # Count files if accessible (including subdirectories)
             file_count = 0
+            high_risk_file_count = 0
+            subdir_count = 0
+            subdirectories = []
+            
             if accessible:
                 try:
-                    # Count files in directory
-                    file_count = len([f for f in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, f))])
-                except Exception:
-                    pass
+                    # Recursively walk through directory and subdirectories
+                    for root, dirs, files in os.walk(dir_path):
+                        # Add found subdirectories to our list
+                        for subdir in dirs:
+                            subdir_full_path = os.path.join(root, subdir)
+                            # Only add subdirectories that are relative to dir_path
+                            if subdir_full_path.startswith(dir_path):
+                                subdirectories.append(subdir_full_path)
+                        
+                        # Count subdirectories
+                        subdir_count += len(dirs)
+                        
+                        # Count files and identify high-risk files
+                        for file in files:
+                            file_count += 1
+                            _, ext = os.path.splitext(file)
+                            if ext.lower() in high_risk_extensions:
+                                high_risk_file_count += 1
+                except Exception as e:
+                    logging.warning(f"Error scanning subdirectories in {dir_path}: {str(e)}")
+            
+            total_files_monitored += file_count
             
             directories.append({
                 'path': dir_path,
                 'exists': exists,
                 'accessible': accessible,
-                'file_count': file_count
+                'file_count': file_count,
+                'high_risk_files': high_risk_file_count,
+                'subdirectory_count': subdir_count,
+                'subdirectories': subdirectories[:100] if len(subdirectories) > 100 else subdirectories  # Limit to 100 to avoid overly large responses
             })
         
         # Create the response data
@@ -74,6 +108,7 @@ def get_monitored_network_directories(network_monitor):
                 'enabled': network_monitor and hasattr(network_monitor, 'is_running') and network_monitor.is_running(),
                 'last_scan': last_scan,
                 'total_directories': len(directories),
+                'total_files_monitored': total_files_monitored,
                 'directories': directories
             }
         }
@@ -137,10 +172,12 @@ network_directories_css = """
 }
 
 .directories-list li {
-    padding: 5px;
-    margin-bottom: 3px;
+    padding: 8px;
+    margin-bottom: 8px;
     border-left: 3px solid #eee;
     padding-left: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
 }
 
 .directory-active {
@@ -155,9 +192,70 @@ network_directories_css = """
     margin-right: 5px;
 }
 
-.file-count {
-    color: #7f8c8d;
+.directory-details {
+    margin-top: 5px;
+    padding-left: 15px;
     font-size: 0.9em;
+    color: #555;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.file-count {
+    color: #3498db;
+}
+
+.subdir-count {
+    color: #9b59b6;
+}
+
+.high-risk-files {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.subdirectories-container {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.toggle-subdirs {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 0.85em;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: background-color 0.2s;
+}
+
+.toggle-subdirs:hover {
+    background-color: #e0e0e0;
+}
+
+.subdirectories-list {
+    list-style-type: none;
+    padding-left: 15px;
+    margin-top: 5px;
+    font-size: 0.85em;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    border-left: 2px solid #ddd;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.subdirectories-list li {
+    padding: 3px 5px;
+    margin-bottom: 3px;
+    border-bottom: 1px dotted #eee;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 """
 
@@ -198,15 +296,16 @@ function updateMonitoredDirectoriesDisplay(data) {
     // Clear previous contents
     directoriesContainer.innerHTML = '';
     
-    // Display monitoring status
+    // Display monitoring status and total files monitored
     if (data && data.success) {
         const status = data.monitoring_status;
         const statusDiv = document.createElement('div');
         statusDiv.className = 'monitoring-status';
         statusDiv.innerHTML = `
-            <p><strong>Status:</strong> <span class="${status.enabled ? 'enabled' : 'disabled'}">${status.enabled ? 'ENABLED' : 'DISABLED'}</span></p>
-            <p><strong>Last Scan:</strong> ${status.last_scan}</p>
-            <p><strong>Total Monitored:</strong> ${status.total_directories} directories</p>
+            <div><strong>Status:</strong> <span class="${status.enabled ? 'enabled' : 'disabled'}">${status.enabled ? 'Enabled' : 'Disabled'}</span></div>
+            <div><strong>Last Scan:</strong> ${status.last_scan}</div>
+            <div><strong>Total Monitored Directories:</strong> ${status.total_directories}</div>
+            <div><strong>Total Files Monitored:</strong> ${status.total_files_monitored || 0}</div>
         `;
         directoriesContainer.appendChild(statusDiv);
         
@@ -222,9 +321,16 @@ function updateMonitoredDirectoriesDisplay(data) {
                 
                 li.innerHTML = `<span class="${statusClass}">${statusIcon}</span> ${dir.path}`;
                 
-                // Add file count if available
-                if (dir.file_count !== undefined) {
-                    li.innerHTML += ` <span class="file-count">(${dir.file_count} files)</span>`;
+                // Create detailed information div
+                if (dir.exists && dir.accessible) {
+                    const detailsDiv = document.createElement('div');
+                    detailsDiv.className = 'directory-details';
+                    detailsDiv.innerHTML = `
+                        <span class="file-count">Files: ${dir.file_count || 0}</span>
+                        <span class="subdir-count">Subdirectories: ${dir.subdirectory_count || 0}</span>
+                        ${dir.high_risk_files > 0 ? `<span class="high-risk-files">High-risk files: ${dir.high_risk_files}</span>` : ''}
+                    `;
+                    li.appendChild(detailsDiv);
                 }
                 
                 list.appendChild(li);

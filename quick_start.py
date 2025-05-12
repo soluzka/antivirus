@@ -67,23 +67,65 @@ folder_watcher_state = {
     'active': False,
     'start_time': None,
     'monitored_paths': [
+        # User profile directories - common locations for personal files and downloads
         os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'Downloads'),
         os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'Desktop'),
         os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'Documents'),
-        os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'AppData\\Local\\Temp'),
         os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'Pictures'),
+        os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'Videos'),
+        os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'Music'),
+        
+        # Application data directories - where applications store settings and data
+        os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'AppData\\Local\\Temp'),
         os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'AppData\\Roaming'),
         os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'AppData\\Local'),
+        os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'AppData\\LocalLow'),
+        
+        # System directories - critical system paths often targeted by malware
+        os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32'),
+        os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'SysWOW64'),
+        os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'Temp'),
+        os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'Prefetch'),  # Can show recently executed programs
+        os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\drivers\\etc'),  # hosts file, DNS
+        os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\wbem'),  # WMI
+        
+        # Program installation directories - common software locations
+        os.path.join('C:\\', 'Program Files'),
+        os.path.join('C:\\', 'Program Files (x86)'),
         os.path.join('C:\\', 'Program Files\\Common Files'),
+        os.path.join('C:\\', 'ProgramData'),
         os.path.join('C:\\', 'ProgramData', 'Microsoft'),
-        os.path.join('C:\\', 'Windows', 'Temp')
+        
+        # Startup locations - critical for persistence mechanisms
+        os.path.join(os.environ.get('PROGRAMDATA', 'C:\\ProgramData'), 'Microsoft\\Windows\\Start Menu\\Programs\\Startup'),
+        os.path.join(os.environ.get('USERPROFILE', 'C:\\Users\\Default'), 'AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup'),
+        
+        # Root directories for thorough coverage
+        'C:\\'
     ],
     'detections': [],
     'excluded_paths': [
         'OneDriveTemp',
         'OneDrive',
         '.tmp',
-        'Temporary Internet Files'
+        'Temporary Internet Files',
+        'WindowsApps',  # Microsoft Store apps can be large and are usually safe
+        'WinSxS',      # Windows component store (very large and low risk)
+        'node_modules', # NPM modules folder can be extremely large
+        'venv',         # Python virtual environments folder
+        '.git',         # Git repositories
+        '$Recycle.Bin', # Recycle bin
+        'site-packages', # Python installed packages 
+        'Lib\\site-packages', # Python library packages
+        'pip-',         # Pip installation folders
+        'pip_cache',    # Pip cache
+        'pip-tmp',      # Pip temporary files
+        '__pycache__',  # Python compiled cache
+        '.pyc',         # Python compiled files
+        '.pyd',         # Python DLL files
+        'Python3',      # Python installation folders
+        'Python311',    # Specific Python version folders
+        'python-wheels' # Python wheels directory
     ]
 }
 
@@ -571,13 +613,24 @@ def toggle_network_monitor(action):
 
 @app.route('/get_network_monitored_directories')
 def get_network_monitored_directories():
-    """Get the list of network-monitored directories."""
+    """Get the list of network-monitored directories with recursive subdirectory scanning."""
     global network_state
+    
+    # Define high-risk file extensions to monitor more carefully
+    high_risk_extensions = [
+        '.exe', '.dll', '.bat', '.cmd', '.ps1', '.vbs', '.js', '.wsf', '.hta', 
+        '.scr', '.pif', '.reg', '.com', '.msi', '.jar', '.jnlp', '.vbe', 
+        '.wsh', '.sys', '.inf'
+    ]
+    
     # Get monitoring status and statistics
     monitored_dirs = network_state['monitored_directories']
+    total_files_monitored = 0
+    discovered_subdirs = [] # Keep track of discovered subdirectories
+    
     monitoring_status = {
         'enabled': network_state['monitoring_enabled'],
-        'total_directories': len(monitored_dirs),
+        'total_directories': len(monitored_dirs),  # Initial count - will be updated after discovering subdirs
         'last_scan': network_state.get('last_scan', 'Never'),
         'traffic_stats': network_state.get('traffic_stats', {}),
         'directories': []
@@ -587,12 +640,51 @@ def get_network_monitored_directories():
     for directory in monitored_dirs:
         if os.path.exists(directory):
             try:
-                # Count files in directory (non-recursive)
-                file_count = len([f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))])
+                # Count files in directory (recursive)
+                file_count = 0
+                high_risk_file_count = 0
+                subdir_count = 0
+                
+                # Use os.walk to recursively traverse directory tree
+                for root, dirs, files in os.walk(directory):
+                    # Skip excluded paths
+                    if any(excluded in root for excluded in folder_watcher_state['excluded_paths']):
+                        continue
+                    
+                    # Add root to discovered subdirectories if it's not the original directory
+                    # and not already in the monitored directories list
+                    if root != directory and root not in monitored_dirs and root not in discovered_subdirs:
+                        discovered_subdirs.append(root)
+                        
+                    # Count subdirectories (but only at first level)
+                    if root == directory:
+                        subdir_count = len(dirs)
+                        
+                        # Also add immediate subdirectories to our discovered list
+                        for subdir in dirs:
+                            subdir_path = os.path.join(root, subdir)
+                            if subdir_path not in monitored_dirs and subdir_path not in discovered_subdirs:
+                                discovered_subdirs.append(subdir_path)
+                    else:
+                        # Count this as a subdirectory
+                        subdir_count += 1
+                    
+                    # Count files and check for high-risk extensions
+                    for filename in files:
+                        file_count += 1
+                        _, ext = os.path.splitext(filename)
+                        if ext.lower() in high_risk_extensions:
+                            high_risk_file_count += 1
+                
+                # Update total files count
+                total_files_monitored += file_count
+                
                 monitoring_status['directories'].append({
                     'path': directory,
                     'exists': True,
                     'file_count': file_count,
+                    'high_risk_files': high_risk_file_count,
+                    'subdirectory_count': subdir_count,
                     'accessible': True
                 })
             except PermissionError:
@@ -601,6 +693,8 @@ def get_network_monitored_directories():
                     'path': directory,
                     'exists': True,
                     'file_count': 'Unknown (Permission denied)',
+                    'high_risk_files': 0,
+                    'subdirectory_count': 0,
                     'accessible': False
                 })
         else:
@@ -608,12 +702,38 @@ def get_network_monitored_directories():
                 'path': directory,
                 'exists': False,
                 'file_count': 0,
+                'high_risk_files': 0,
+                'subdirectory_count': 0,
                 'accessible': False
             })
     
+    # Add total files monitored to the status
+    monitoring_status['total_files_monitored'] = total_files_monitored
+    
+    # Add discovered subdirectories to the network state's monitored directories
+    if discovered_subdirs:
+        # Filter out any excluded paths
+        valid_subdirs = []
+        for subdir in discovered_subdirs:
+            # Skip if any excluded term is in the path
+            if not any(excluded in subdir for excluded in folder_watcher_state['excluded_paths']):
+                valid_subdirs.append(subdir)
+        
+        # Add valid subdirectories to monitored directories
+        for subdir in valid_subdirs:
+            if subdir not in network_state['monitored_directories']:
+                network_state['monitored_directories'].append(subdir)
+                logging.info(f"Added discovered subdirectory to network monitoring: {subdir}")
+    
+    # Update the monitoring_status to reflect the added subdirectories
+    monitoring_status['total_directories'] = len(network_state['monitored_directories'])
+    
+    # Also add a separate count for all subdirectories to make it clearly visible
+    monitoring_status['total_subdirectories_found'] = len(discovered_subdirs)
+    
     return jsonify({
         'success': True,
-        'monitored_directories': monitored_dirs,
+        'monitored_directories': network_state['monitored_directories'],
         'monitoring_status': monitoring_status
     })
 
@@ -645,12 +765,31 @@ def toggle_folder_watcher(action):
         else:
             logger.info("Folder watcher stopped")
         
+        # Add discovered subdirectories to the monitored paths
+        if discovered_subdirs:
+            # Filter out any excluded paths
+            valid_subdirs = []
+            for subdir in discovered_subdirs:
+                # Skip if any excluded term is in the path
+                if not any(excluded in subdir for excluded in folder_watcher_state['excluded_paths']):
+                    valid_subdirs.append(subdir)
+            
+            # Add valid subdirectories to monitored paths
+            for subdir in valid_subdirs:
+                if subdir not in folder_watcher_state['monitored_paths']:
+                    folder_watcher_state['monitored_paths'].append(subdir)
+                    logging.info(f"Added discovered subdirectory to folder monitoring: {subdir}")
+        
+        # Update the total directories count to reflect all discovered directories
+        total_directories_monitored = len(folder_watcher_state['monitored_paths'])
+        
+        # Return the result
         return jsonify({
             'success': True,
             'status': 'ENABLED' if folder_watcher_state['active'] else 'DISABLED',
             'folder_watcher_running': folder_watcher_state['active'],
-            'monitored_paths': folder_watcher_state['monitored_paths'],
-            'monitored_count': len(folder_watcher_state['monitored_paths']),
+            'monitored_paths': folder_watcher_state['monitored_paths'],  # Use updated list
+            'total_paths': len(folder_watcher_state['monitored_paths']),  # Use updated count
             'since': folder_watcher_state['start_time']
         })
     except Exception as e:
@@ -660,67 +799,156 @@ def toggle_folder_watcher(action):
 @app.route('/folder-watcher-paths', methods=['GET'])
 @app.route('/get_folder_watcher_paths', methods=['GET'])
 def get_folder_watcher_paths():
-    """Get the list of folder watcher monitored paths."""
+    """Get the list of folder watcher monitored paths with recursive subdirectory scanning."""
     global folder_watcher_state
+    
+    # Define high-risk file extensions to monitor more carefully
+    high_risk_extensions = [
+        '.exe', '.dll', '.bat', '.cmd', '.ps1', '.vbs', '.js', '.wsf', '.hta', 
+        '.scr', '.pif', '.reg', '.com', '.msi', '.jar', '.jnlp', '.vbe', 
+        '.wsh', '.sys', '.inf'
+    ]
     
     # Get monitoring status and statistics for folder watcher
     monitored_paths = folder_watcher_state['monitored_paths']
-    watch_status = {
-        'enabled': folder_watcher_state['active'],
-        'total_paths': len(monitored_paths),
-        'last_scan': folder_watcher_state.get('start_time', 'Never'),
-        'paths_with_status': []
-    }
     
-    # Add detailed information about each monitored path
+    # Initialize counters for total statistics
+    total_files_monitored = 0
+    total_high_risk_files = 0
+    total_directories_monitored = len(monitored_paths)  # Start with top-level directories
+    discovered_subdirs = []  # Track discovered subdirectories
+    
+    # Prepare a list to hold detailed path information
+    paths_with_details = []
+    
+    # Process each monitored path
     for path in monitored_paths:
         if os.path.exists(path):
-            try:
-                if should_exclude_path(path):
-                    watch_status['paths_with_status'].append({
-                        'path': path,
-                        'exists': True,
-                        'file_count': 'Excluded from monitoring',
-                        'accessible': False,
-                        'watch_active': False
-                    })
-                    continue
-                    
-                # Get path statistics
-                file_count = sum([1 for _ in os.listdir(path) if os.path.isfile(os.path.join(path, _))])
-                watch_status['paths_with_status'].append({
+            # Skip excluded paths
+            if should_exclude_path(path):
+                paths_with_details.append({
                     'path': path,
                     'exists': True,
-                    'file_count': file_count,
-                    'accessible': True,
-                    'watch_active': folder_watcher_state['active']
+                    'file_count': 'Excluded from monitoring',
+                    'high_risk_files': 0,
+                    'subdirectory_count': 0,
+                    'accessible': False
                 })
-            except PermissionError:
-                # Handle permission errors
-                watch_status['paths_with_status'].append({
+                continue
+                
+            # Check if path is accessible
+            is_accessible = os.access(path, os.R_OK)
+            file_count = 0
+            high_risk_count = 0
+            subdir_count = 0
+            
+            if is_accessible:
+                try:
+                    # Use os.walk to traverse directory structure recursively
+                    for root, dirs, files in os.walk(path):
+                        # Skip excluded paths
+                        if any(excluded in root for excluded in folder_watcher_state['excluded_paths']):
+                            continue
+                        
+                        # Add root to discovered subdirectories if it's not the original path
+                        # and not already in the monitored paths list
+                        if root != path and root not in monitored_paths and root not in discovered_subdirs:
+                            discovered_subdirs.append(root)
+                        
+                        # Count first-level subdirectories separately
+                        if root == path:
+                            subdir_count = len(dirs)
+                            total_directories_monitored += len(dirs)
+                            
+                            # Add immediate subdirectories to our discovered list
+                            for subdir in dirs:
+                                subdir_path = os.path.join(root, subdir)
+                                if subdir_path not in monitored_paths and subdir_path not in discovered_subdirs:
+                                    discovered_subdirs.append(subdir_path)
+                        else:
+                            # This is a subdirectory being processed
+                            subdir_count += 1
+                            total_directories_monitored += 1
+                            
+                        # Count files and identify high-risk ones
+                        for filename in files:
+                            file_count += 1
+                            total_files_monitored += 1
+                            _, ext = os.path.splitext(filename)
+                            if ext.lower() in high_risk_extensions:
+                                high_risk_count += 1
+                                total_high_risk_files += 1
+                except Exception as e:
+                    # Handle potential errors like permission issues
+                    logging.warning(f"Error scanning {path}: {str(e)}")
+                    is_accessible = False
+                    
+                # Add detailed information for this path
+                paths_with_details.append({
                     'path': path,
                     'exists': True,
-                    'file_count': 'Unknown (Permission denied)',
+                    'accessible': is_accessible,
+                    'file_count': file_count,
+                    'high_risk_files': high_risk_count,
+                    'subdirectory_count': subdir_count
+                })
+            else:
+                # Path exists but is not accessible
+                paths_with_details.append({
+                    'path': path,
+                    'exists': True,
                     'accessible': False,
-                    'watch_active': False
+                    'file_count': 'Unknown (Permission denied)',
+                    'high_risk_files': 0,
+                    'subdirectory_count': 0
                 })
         else:
-            watch_status['paths_with_status'].append({
+            # Path doesn't exist
+            paths_with_details.append({
                 'path': path,
                 'exists': False,
-                'file_count': 0,
                 'accessible': False,
-                'watch_active': False
+                'file_count': 0,
+                'high_risk_files': 0,
+                'subdirectory_count': 0
             })
     
-    return jsonify({
-        'success': True,
-        'paths': monitored_paths,
-        'directories': monitored_paths,  # Keep for backwards compatibility
-        'monitoring_active': folder_watcher_state['active'],
+    # Add discovered subdirectories to the folder watcher's monitored paths
+    if discovered_subdirs:
+        # Filter out any excluded paths
+        valid_subdirs = []
+        for subdir in discovered_subdirs:
+            # Skip if any excluded term is in the path
+            if not any(excluded in subdir for excluded in folder_watcher_state['excluded_paths']):
+                valid_subdirs.append(subdir)
+        
+        # Add valid subdirectories to monitored paths
+        for subdir in valid_subdirs:
+            if subdir not in folder_watcher_state['monitored_paths']:
+                folder_watcher_state['monitored_paths'].append(subdir)
+                logging.info(f"Added discovered subdirectory to folder watcher: {subdir}")
+        
+        # Update the total directories count
+        total_directories_monitored = len(folder_watcher_state['monitored_paths'])
+    
+    # Generate response with enhanced statistics
+    response = {
+        'active': folder_watcher_state['active'],
         'start_time': folder_watcher_state['start_time'],
-        'watch_status': watch_status
-    })
+        'paths': paths_with_details,
+        'excluded_paths': folder_watcher_state['excluded_paths'],
+        'detections': folder_watcher_state['detections'],
+        'total_files_monitored': total_files_monitored,
+        'total_directories_monitored': total_directories_monitored,
+        'total_high_risk_files': total_high_risk_files,
+        'monitored_paths': folder_watcher_state['monitored_paths'],  # Include updated paths
+        'root_directories_count': len(monitored_paths),  # Original root directories
+        'subdirectories_count': len(discovered_subdirs),  # Found subdirectories
+        'total_subdirectories_found': len(discovered_subdirs),  # For consistency with network monitor
+        'total_paths': len(folder_watcher_state['monitored_paths'])  # Total of all monitored paths
+    }
+    
+    return jsonify(response)
 
 @app.route('/start_realtime', methods=['POST'])
 def start_realtime():

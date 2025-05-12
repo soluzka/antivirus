@@ -53,6 +53,51 @@
         button:hover {
             background-color: #45a049;
         }
+        
+        /* Subdirectories styling */
+        .subdirectories-container {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+        
+        .toggle-subdirs {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.85em;
+            cursor: pointer;
+            margin-bottom: 5px;
+            transition: background-color 0.2s;
+        }
+        
+        .toggle-subdirs:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .subdirectories-list {
+            list-style-type: none;
+            padding-left: 15px;
+            margin-top: 5px;
+            font-size: 0.85em;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            border-left: 2px solid #ddd;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        
+        .subdirectories-list li {
+            padding: 3px 5px;
+            margin-bottom: 3px;
+            border-bottom: 1px dotted #eee;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
         .folder-list {
             list-style-type: none;
             padding: 0;
@@ -72,6 +117,106 @@
             color: white;
             margin-bottom: 15px;
             border-radius: 3px;
+        }
+        .high-risk-files {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        /* Styles for all monitored paths section */
+        .all-monitored-paths {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .toggle-all-paths {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.85em;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.2s;
+        }
+        
+        .toggle-all-paths:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .all-paths-list {
+            list-style-type: none;
+            padding-left: 10px;
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            border-left: 2px solid #ddd;
+        }
+        
+        .all-paths-list li {
+            padding: 3px 5px;
+            margin-bottom: 3px;
+            border-bottom: 1px dotted #eee;
+            font-size: 0.9em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .primary-directories-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .directories-stats {
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: #555;
+            background-color: #f0f0f0;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .file-count {
+            color: #3498db;
+        }
+        .subdir-count {
+            color: #9b59b6;
+        }
+        .matches-count {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .directory-stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .directory-stat-card {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 12px;
+            border-left: 3px solid #3498db;
+            width: calc(50% - 15px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .directory-stat-card h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .stat-details {
+            font-size: 13px;
+        }
+        .stat-details p {
+            margin: 5px 0;
         }
         .success {
             background-color: #4CAF50;
@@ -541,10 +686,74 @@ document.getElementById('start_folder_watcher_btn').onclick = function() {
                 // Combine directories from both sources
                 const allDirectories = new Set([...networkData.monitored_directories, ...folderData.paths]);
                 
-                // Display directories
+                // First, add a section for ALL monitored paths (root + subdirectories)
                 if (foldersList) {
+                    // Create a container for all monitored paths
+                    const allPathsSection = document.createElement('div');
+                    allPathsSection.className = 'all-monitored-paths';
+                    const allPathsTitle = document.createElement('h4');
+                    allPathsTitle.textContent = 'All Monitored Paths';
+                    allPathsSection.appendChild(allPathsTitle);
+                    
+                    // Create statistics for directories
+                    const statsDiv = document.createElement('div');
+                    statsDiv.className = 'directories-stats';
+                    statsDiv.innerHTML = `
+                        <p><strong>Network Monitor:</strong> ${networkData.monitored_directories.length} directories</p>
+                        <p><strong>Folder Watcher:</strong> ${folderData.paths ? folderData.paths.length : 0} directories</p>
+                        <p><strong>Combined Total:</strong> ${allDirectories.size} unique directories</p>
+                    `;
+                    allPathsSection.appendChild(statsDiv);
+                    
+                    // Add toggle button for all paths
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.className = 'toggle-all-paths';
+                    toggleBtn.innerText = 'Show All Monitored Paths';
+                    toggleBtn.onclick = function(e) {
+                        e.preventDefault();
+                        const pathsList = this.nextElementSibling;
+                        if (pathsList.style.display === 'none' || !pathsList.style.display) {
+                            pathsList.style.display = 'block';
+                            this.innerText = 'Hide All Monitored Paths';
+                        } else {
+                            pathsList.style.display = 'none';
+                            this.innerText = 'Show All Monitored Paths';
+                        }
+                    };
+                    allPathsSection.appendChild(toggleBtn);
+                    
+                    // Create list for all paths
+                    const allPathsList = document.createElement('ul');
+                    allPathsList.className = 'all-paths-list';
+                    allPathsList.style.display = 'none';
+                    
+                    // Sort all directories for easier readability
+                    const sortedPaths = Array.from(allDirectories).sort();
+                    sortedPaths.forEach(path => {
+                        const pathItem = document.createElement('li');
+                        pathItem.innerText = path;
+                        allPathsList.appendChild(pathItem);
+                    });
+                    
+                    allPathsSection.appendChild(allPathsList);
+                    foldersList.appendChild(allPathsSection);
+                    
+                    // Add a separator
+                    const separator = document.createElement('hr');
+                    foldersList.appendChild(separator);
+                    
+                    // Now add the regular directory list
+                    const regularListTitle = document.createElement('h4');
+                    regularListTitle.textContent = 'Primary Monitored Directories';
+                    foldersList.appendChild(regularListTitle);
+                    
+                    // Create the list for primary directories
+                    const primaryDirsList = document.createElement('ul');
+                    primaryDirsList.className = 'primary-directories-list';
+                    
+                    // Display directories
                     if (allDirectories.size === 0) {
-                        foldersList.innerHTML = '<li>No monitored directories found</li>';
+                        primaryDirsList.innerHTML = '<li>No monitored directories found</li>';
                     } else {
                         // Convert Set back to array for iteration
                         Array.from(allDirectories).forEach(dir => {
@@ -560,17 +769,28 @@ document.getElementById('start_folder_watcher_btn').onclick = function() {
                                 
                                 li.innerHTML = `<span class="${statusClass}">${statusIcon}</span> ${dir}`;
                                 
-                                // Add file count if available
-                                if (networkDirInfo.file_count !== undefined) {
-                                    li.innerHTML += ` <span class="file-count">(${networkDirInfo.file_count} files)</span>`;
+                                // Add file and risk info if available
+                                if (networkDirInfo.exists && networkDirInfo.accessible) {
+                                    const infoDiv = document.createElement('div');
+                                    infoDiv.className = 'directory-details';
+                                    infoDiv.innerHTML = `
+                                        <span class="file-count">Files: ${networkDirInfo.file_count || 0}</span>
+                                        ${networkDirInfo.subdirectory_count ? `<span class="subdir-count">Subdirectories: ${networkDirInfo.subdirectory_count}</span>` : ''}
+                                        ${networkDirInfo.high_risk_files > 0 ? `<span class="high-risk-files">High-risk files: ${networkDirInfo.high_risk_files}</span>` : ''}
+                                    `;
+                                    li.appendChild(infoDiv);
                                 }
+                                
+                                primaryDirsList.appendChild(li);
                             } else {
                                 // Basic display for folder watcher directories
                                 li.textContent = dir;
+                                primaryDirsList.appendChild(li);
                             }
-                            
-                            foldersList.appendChild(li);
                         });
+                        
+                        // Add the primary directories list to the foldersList
+                        foldersList.appendChild(primaryDirsList);
                     }
                 } else {
                     console.error('Folders list element not found');
@@ -824,13 +1044,17 @@ document.getElementById('start_folder_watcher_btn').onclick = function() {
                     <p>Matches Found: ${data.matches}</p>
                 `;
             
-            // Add statistics for files and directories scanned
-            if (data.files_scanned !== undefined) {
-                resultsHtml += `<p>Files Scanned: ${data.files_scanned}</p>`;
+            // Add enhanced statistics if available
+            if (data.total_files_scanned !== undefined) {
+                resultsHtml += `<p>Total Files Scanned: <strong>${data.total_files_scanned}</strong></p>`;
             }
             
-            if (data.directories_scanned !== undefined) {
-                resultsHtml += `<p>Directories Scanned: ${data.directories_scanned}</p>`;
+            if (data.total_high_risk_files !== undefined) {
+                resultsHtml += `<p>High-Risk Files: <strong style="color: #e74c3c;">${data.total_high_risk_files}</strong></p>`;
+            }
+            
+            if (data.total_subdirectories !== undefined) {
+                resultsHtml += `<p>Subdirectories Scanned: <strong>${data.total_subdirectories}</strong></p>`;
             }
                 
             if (data.file) {
@@ -839,6 +1063,51 @@ document.getElementById('start_folder_watcher_btn').onclick = function() {
                 resultsHtml += `<p>Folder: ${data.folder}</p>`;
             } else if (data.folders) {
                 resultsHtml += `<p>Folders: ${data.folders.join(', ')}</p>`;
+            }
+            
+            // Add detailed directory statistics if available
+            if (data.stats && data.stats.directories && data.stats.directories.length > 0) {
+                resultsHtml += `<h3>Directory Details</h3><div class="directory-stats-container">`;
+                
+                data.stats.directories.forEach(dir => {
+                    if (dir.exists && dir.accessible) {
+                        resultsHtml += `
+                            <div class="directory-stat-card">
+                                <h4>${dir.path}</h4>
+                                <div class="stat-details">
+                                    <p>Files: <span class="file-count">${dir.file_count || 0}</span></p>
+                                    <p>Subdirectories: <span class="subdir-count">${dir.subdirectory_count || 0}</span></p>
+                                    ${dir.high_risk_files > 0 ? 
+                                      `<p>High-risk files: <span class="high-risk-files">${dir.high_risk_files}</span></p>` : 
+                                      ''}
+                                    ${dir.matches > 0 ? 
+                                      `<p>Threats found: <span class="matches-count">${dir.matches}</span></p>` : 
+                                      '<p>No threats detected</p>'}
+                                    
+                                    <!-- Add subdirectories if available -->
+                                    ${dir.subdirectories && dir.subdirectories.length > 0 ? `
+                                        <div class="subdirectories-container">
+                                            <button class="toggle-subdirs" onclick="event.preventDefault(); 
+                                                const subdirList = this.nextElementSibling;
+                                                if (subdirList.style.display === 'none' || !subdirList.style.display) {
+                                                    subdirList.style.display = 'block';
+                                                    this.innerText = 'Hide Subdirectories';
+                                                } else {
+                                                    subdirList.style.display = 'none';
+                                                    this.innerText = 'Show Subdirectories';
+                                                }">Show Subdirectories</button>
+                                            <ul class="subdirectories-list" style="display: none;">
+                                                ${dir.subdirectories.map(subdir => `<li>${subdir}</li>`).join('')}
+                                            </ul>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                
+                resultsHtml += `</div>`;
             }
             
             if (data.results && data.results.length > 0) {
