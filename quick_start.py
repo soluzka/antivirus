@@ -116,7 +116,7 @@ folder_watcher_state = {
         '.git',         # Git repositories
         '$Recycle.Bin', # Recycle bin
         'site-packages', # Python installed packages 
-        'Lib\\site-packages', # Python library packages
+        'Lib\site-packages', # Python library packages
         'pip-',         # Pip installation folders
         'pip_cache',    # Pip cache
         'pip-tmp',      # Pip temporary files
@@ -125,7 +125,8 @@ folder_watcher_state = {
         '.pyd',         # Python DLL files
         'Python3',      # Python installation folders
         'Python311',    # Specific Python version folders
-        'python-wheels' # Python wheels directory
+        'python-wheels', # Python wheels directory
+        '_MEI',         # PyInstaller temp folders (typically start with _MEI followed by numbers)
     ]
 }
 

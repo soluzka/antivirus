@@ -66,6 +66,39 @@ network_monitor = NetworkMonitor()
 network_monitor.start()
 logging.info("Network monitoring started automatically at application startup")
 
+# Add endpoints for traffic statistics
+@app.route('/get_traffic_stats', methods=['GET'])
+def get_traffic_stats():
+    """Get network traffic statistics"""
+    if network_monitor and network_monitor.is_running():
+        return jsonify(network_monitor.get_traffic_stats())
+    else:
+        return jsonify({
+            'error': 'Network monitoring is not running',
+            'total_connections': 0,
+            'inbound': 0,
+            'outbound': 0,
+            'active_ips': [],
+            'protocols': {},
+            'ports': {},
+            'processes': {},
+            'timestamp': time.time()
+        })
+
+@app.route('/get_c2_patterns', methods=['GET'])
+def get_c2_patterns():
+    """Get potential C2 patterns in network traffic"""
+    if network_monitor and network_monitor.is_running():
+        return jsonify(network_monitor.get_c2_patterns())
+    else:
+        return jsonify({
+            'error': 'Network monitoring is not running',
+            'potential_c2': [],
+            'beaconing': [],
+            'suspicious_connections': [],
+            'timestamp': time.time()
+        })
+
 # Load environment variables
 # Configure secret key for sessions
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -1794,6 +1827,35 @@ def get_network_monitored_directories_endpoint():
     except Exception as e:
         logging.error(f"Error getting network monitored directories: {str(e)}")
         return jsonify({'success': False, 'error': str(e)}), 500
+
+# Route to get folder watcher paths
+@app.route('/get_folder_watcher_paths', methods=['GET'])
+def get_folder_watcher_paths():
+    """Get paths being watched by folder watcher"""
+    try:
+        # Get the paths from the folder watcher if it exists
+        monitored_paths = []
+        if 'folder_watcher' in globals() and folder_watcher is not None:
+            monitored_paths = folder_watcher.get_watched_folders()
+        elif 'yara_scanner' in globals() and yara_scanner is not None:
+            # Try to get folders from YARA scanner as fallback
+            monitored_paths = yara_scanner.get_monitored_folders()
+        
+        # If no paths are monitored, use default paths
+        if not monitored_paths:
+            monitored_paths = [
+                os.path.join(os.environ.get('USERPROFILE', ''), 'Downloads'),
+                os.path.join(os.environ.get('USERPROFILE', ''), 'Desktop'),
+                os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')
+            ]
+        
+        return jsonify({
+            'success': True,
+            'paths': monitored_paths
+        })
+    except Exception as e:
+        logging.error(f"Error getting folder watcher paths: {str(e)}")
+        return jsonify({'success': False, 'error': str(e), 'paths': []}), 500
 
 # --- Ensure start_realtime route exists and works ---
 

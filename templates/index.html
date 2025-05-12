@@ -843,34 +843,130 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
         
         // Update function for traffic display
         function updateTrafficDisplay(trafficData, c2Data) {
-            const trafficDiv = document.getElementById('traffic_stats');
-            
-            if (!trafficDiv) return;
-
-            trafficDiv.innerHTML = `
-                <h4>Traffic Statistics</h4>
-                <div style="margin: 10px 0;">
-                    <strong>Total Connections:</strong> ${trafficData.total_connections || 0}
-                </div>
-                <div style="margin: 10px 0;">
-                    <strong>Active Connections:</strong> ${trafficData.active_connections || 0}
-                </div>
-                <div style="margin: 10px 0;">
-                    <strong>Suspicious Patterns:</strong> ${c2Data.patterns ? c2Data.patterns.length : 0}
-                </div>
-                <div style="margin: 10px 0;">
-                    <h5>Suspicious Connections:</h5>
-                    ${c2Data.patterns ? c2Data.patterns.map(info => `
-                        <div style="margin: 5px 0;">
-                            <span style="color: #f1c40f;"><strong>${info.ip}</strong></span>
-                            <span style="margin-left: 1em;">${info.reason}</span>
-                            <span style="margin-left: 1em;">Since: ${new Date(info.timestamp).toLocaleString()}</span>
+            // Create traffic statistics display area if it doesn't exist
+            let trafficStatsElem = document.getElementById('network_traffic_stats');
+            if (!trafficStatsElem) {
+                const monitoringCard = document.querySelector('.card');
+                if (monitoringCard) {
+                    trafficStatsElem = document.createElement('div');
+                    trafficStatsElem.id = 'network_traffic_stats';
+                    trafficStatsElem.className = 'card';
+                    trafficStatsElem.innerHTML = `
+                        <div class="card-header">
+                            <h3>Network Traffic Statistics</h3>
                         </div>
-                    `).join('') : 'None detected'}
-                </div>
-            `;
+                        <div id="traffic_content" class="card-body"></div>
+                    `;
+                    monitoringCard.parentNode.insertBefore(trafficStatsElem, monitoringCard.nextSibling);
+                }
+            }
+
+            // Update traffic statistics content
+            const trafficContent = document.getElementById('traffic_content');
+            if (trafficContent) {
+                if (trafficData.error) {
+                    trafficContent.innerHTML = `<div class="alert alert-warning">Error retrieving traffic statistics: ${trafficData.error}</div>`;
+                    return;
+                }
+
+                // Format bytes to KB/MB/GB
+                const formatBytes = (bytes) => {
+                    if (bytes < 1024) return bytes + ' B';
+                    if (bytes < 1048576) return (bytes / 1024).toFixed(2) + ' KB';
+                    if (bytes < 1073741824) return (bytes / 1048576).toFixed(2) + ' MB';
+                    return (bytes / 1073741824).toFixed(2) + ' GB';
+                };
+
+                // Build HTML content
+                let html = `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Connection Summary</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">Total Connections: <strong>${trafficData.total_connections}</strong></li>
+                                <li class="list-group-item">Active IPs: <strong>${trafficData.active_ips ? trafficData.active_ips.length : 0}</strong></li>
+                                <li class="list-group-item">Inbound Traffic: <strong>${formatBytes(trafficData.inbound)}</strong></li>
+                                <li class="list-group-item">Outbound Traffic: <strong>${formatBytes(trafficData.outbound)}</strong></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Protocol Distribution</h4>
+                            <ul class="list-group">
+                `;
+
+                // Add protocol information
+                for (const [protocol, count] of Object.entries(trafficData.protocols || {})) {
+                    html += `<li class="list-group-item">${protocol}: <strong>${count}</strong></li>`;
+                }
+
+                html += `
+                            </ul>
+                        </div>
+                    </div>
+                    <h4 class="mt-3">Active Processes</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Process</th>
+                                <th>Connections</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                // Add process information
+                for (const [process, stats] of Object.entries(trafficData.processes || {})) {
+                    html += `
+                        <tr>
+                            <td>${process}</td>
+                            <td>${stats.connections}</td>
+                        </tr>
+                    `;
+                }
+
+                html += `
+                        </tbody>
+                    </table>
+                `;
+
+                // Add C2 detection section if data exists
+                if (c2Data && c2Data.suspicious_connections && c2Data.suspicious_connections.length > 0) {
+                    html += `
+                        <h4 class="mt-3">Suspicious Network Activity</h4>
+                        <div class="alert alert-danger">
+                            <strong>Warning:</strong> Potentially suspicious connections detected.
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Process</th>
+                                    <th>Remote Address</th>
+                                    <th>Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+
+                    for (const conn of c2Data.suspicious_connections) {
+                        html += `
+                            <tr class="malicious-request">
+                                <td>${conn.process}</td>
+                                <td>${conn.remote_ip}:${conn.remote_port}</td>
+                                <td>${conn.reason}</td>
+                            </tr>
+                        `;
+                    }
+
+                    html += `
+                            </tbody>
+                        </table>
+                    `;
+                }
+
+                trafficContent.innerHTML = html;
+            }
         }
-            
+
         // Function to fetch monitored network directories
         function fetchMonitoredNetworkDirectories() {
             fetch('/get_network_monitored_directories')
@@ -1002,9 +1098,20 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
             if (window.serviceStates.networkMonitorRunning) {
                 Promise.all([
                     fetch('/get_traffic_stats'),
-                    fetch('/get_c2_patterns'),
-                    fetch('/get_ssl_analysis'),
-                    fetch('/get_dns_analysis')
+                    fetch('/get_c2_patterns')
+                ])
+                .then(responses => Promise.all(responses.map(r => r.json())))
+                .then(([trafficData, c2Data]) => {
+                    updateTrafficDisplay(trafficData, c2Data);
+                })
+                .catch(error => {
+                    console.error('Error fetching traffic stats:', error);
+                });
+                
+                // Additional network analysis if available
+                Promise.all([
+                    fetch('/get_ssl_analysis').catch(() => new Response('{"error":"Not implemented"}')),
+                    fetch('/get_dns_analysis').catch(() => new Response('{"error":"Not implemented"}'))
                 ])
                 .then(function(responses) {
                     return Promise.all(responses.map(function(response) {
