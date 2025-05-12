@@ -1,0 +1,107 @@
+2025-04-20 03:20:46 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.133:5000
+2025-04-20 03:20:46 INFO [33mPress CTRL+C to quit[0m
+2025-04-20 03:30:15 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.133:5000
+2025-04-20 03:30:15 INFO [33mPress CTRL+C to quit[0m
+2025-04-20 03:31:12 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.133:5000
+2025-04-20 03:31:12 INFO [33mPress CTRL+C to quit[0m
+2025-04-20 03:32:01 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.133:5000
+2025-04-20 03:32:01 INFO [33mPress CTRL+C to quit[0m
+2025-04-20 03:33:53 INFO 127.0.0.1 - - [20/Apr/2025 03:33:53] "[32mGET / HTTP/1.1[0m" 301 -
+2025-04-20 03:33:54 ERROR 127.0.0.1 - - [20/Apr/2025 03:33:54] code 400, message Bad request version ('\x01C£ìU')
+2025-04-20 03:33:54 INFO 127.0.0.1 - - [20/Apr/2025 03:33:54] "[35m[1m\x16\x03\x01\x06²\x01\x00\x06®\x03\x03¸ÞÏ\x9e\x07\x15\x7f#\x14Þ°u eßù\x14Q»±\x19+Â\x845»§`\x02nJå ºÈ>l\x07B1\x83\x1fcC\x94\x01\x93nY)c\x87³Á\x10;Î\x89 \x1a\x90Ù§C:\x00 \x1a\x1a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06Ejj\x00\x00\x00\x0b\x00\x02\x01\x00\x00-\x00\x02\x01\x01ÿ\x01\x00\x01\x00\x00\x10\x00\x0e\x00\x0c\x02h2\x08http/1.1\x003\x04ï\x04í\x9a\x9a\x00\x01\x00\x11ì\x04À\x9aD[A\x00\x88\x94*\x1f\x06l\x07©3¡¡¸3\x85Df\x8e¨\x97fjI\x8eûu¡y*««;\x9c\x03Ë\x82,Q¢j\x98\x8a\x95\x9e£Ú©]D±\x0b)\x18þà\x1c\x01C£ìU[0m" HTTPStatus.BAD_REQUEST -
+2025-04-20 03:33:54 ERROR 127.0.0.1 - - [20/Apr/2025 03:33:54] code 400, message Bad request version ('êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06¥\x1a\x1a\x00\x00\x00+\x00\x07\x06')
+2025-04-20 03:33:54 INFO 127.0.0.1 - - [20/Apr/2025 03:33:54] "[35m[1m\x16\x03\x01\x07\x12\x01\x00\x07\x0e\x03\x03pW×ü%\x97\x03\x12_Õ;É²À\x05]Ô\x9dRO¡\x8bØB/yzò'¥ß¼ Ï7zæ\x87qÒº3\x93èæW8ÓÈ\x97Ùé0úX\x16g13ý\x1a»SEe\x00 êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06¥\x1a\x1a\x00\x00\x00+\x00\x07\x06[0m" HTTPStatus.BAD_REQUEST -
+2025-04-20 03:33:54 ERROR 127.0.0.1 - - [20/Apr/2025 03:33:54] code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06E')
+2025-04-20 03:33:54 INFO 127.0.0.1 - - [20/Apr/2025 03:33:54] "[35m[1m\x16\x03\x01\x06²\x01\x00\x06®\x03\x03A>*\x84\x1cúu\x13Î¼Ð©¡'jGe \x01·Ê¡\x00\x8c:Ï\x1d×Öù\x06Ð ®Ê\x10\x02ZÑï-m\x82~þ*VM\x8a\x04ÿÅYÉzn\x1dg\x97ª{×\x13%Ã\x00 ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06E[0m" HTTPStatus.BAD_REQUEST -
+2025-04-20 03:33:54 ERROR 127.0.0.1 - - [20/Apr/2025 03:33:54] code 400, message Bad request version ('\x9a\x9a\x00\x00\x003\x04ï\x04í\x8a\x8a\x00\x01\x00\x11ì\x04À\x05f\x86g\x15\x94¤\x87¯')
+2025-04-20 03:33:54 INFO 127.0.0.1 - - [20/Apr/2025 03:33:54] "[35m[1m\x16\x03\x01\x06ò\x01\x00\x06î\x03\x03'*\x16\x14m]]\x10,úçèõQê¯4'þô\x17n\x87@¬é`K°úèy G¤¯\x9b\x1a[Á_täy5\x00¸v\x05³á&¶ø|\x16\x93°Mµ½kÙ\x87µ\x00 JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x85\x9a\x9a\x00\x00\x003\x04ï\x04í\x8a\x8a\x00\x01\x00\x11ì\x04À\x05f\x86g\x15\x94¤\x87¯[0m" HTTPStatus.BAD_REQUEST -
+2025-04-20 03:37:07 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:5000
+ * Running on https://192.168.1.133:5000
+2025-04-20 03:37:07 INFO [33mPress CTRL+C to quit[0m
+2025-04-20 03:37:16 INFO 127.0.0.1 - - [20/Apr/2025 03:37:16] "GET / HTTP/1.1" 200 -
+2025-04-20 03:37:16 INFO 127.0.0.1 - - [20/Apr/2025 03:37:16] "GET /file_crypto_ui HTTP/1.1" 200 -
+2025-04-20 03:37:17 INFO 127.0.0.1 - - [20/Apr/2025 03:37:17] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:37:34 INFO 127.0.0.1 - - [20/Apr/2025 03:37:34] "POST /start_realtime HTTP/1.1" 200 -
+2025-04-20 03:37:35 INFO 127.0.0.1 - - [20/Apr/2025 03:37:35] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:41:22 INFO 127.0.0.1 - - [20/Apr/2025 03:41:22] "GET / HTTP/1.1" 200 -
+2025-04-20 03:41:22 INFO 127.0.0.1 - - [20/Apr/2025 03:41:22] "GET /file_crypto_ui HTTP/1.1" 200 -
+2025-04-20 03:41:23 INFO 127.0.0.1 - - [20/Apr/2025 03:41:23] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:41:29 INFO 127.0.0.1 - - [20/Apr/2025 03:41:29] "GET /logs HTTP/1.1" 200 -
+2025-04-20 03:47:31 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:5000
+ * Running on https://192.168.1.133:5000
+2025-04-20 03:47:31 INFO [33mPress CTRL+C to quit[0m
+2025-04-20 03:48:24 INFO 127.0.0.1 - - [20/Apr/2025 03:48:24] "GET / HTTP/1.1" 200 -
+2025-04-20 03:48:24 INFO 127.0.0.1 - - [20/Apr/2025 03:48:24] "GET /file_crypto_ui HTTP/1.1" 200 -
+2025-04-20 03:48:24 INFO 127.0.0.1 - - [20/Apr/2025 03:48:24] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:48:27 INFO 127.0.0.1 - - [20/Apr/2025 03:48:27] "POST /start_realtime HTTP/1.1" 200 -
+2025-04-20 03:48:27 INFO 127.0.0.1 - - [20/Apr/2025 03:48:27] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:48:28 INFO 127.0.0.1 - - [20/Apr/2025 03:48:28] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:48:33 INFO 127.0.0.1 - - [20/Apr/2025 03:48:33] "GET /safe_download HTTP/1.1" 200 -
+2025-04-20 03:48:33 INFO 127.0.0.1 - - [20/Apr/2025 03:48:33] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:48:36 INFO 127.0.0.1 - - [20/Apr/2025 03:48:36] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:48:44 INFO 127.0.0.1 - - [20/Apr/2025 03:48:44] "POST /start_realtime HTTP/1.1" 200 -
+2025-04-20 03:48:44 INFO 127.0.0.1 - - [20/Apr/2025 03:48:44] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:48:47 INFO 127.0.0.1 - - [20/Apr/2025 03:48:47] "GET / HTTP/1.1" 200 -
+2025-04-20 03:48:47 INFO 127.0.0.1 - - [20/Apr/2025 03:48:47] "GET /file_crypto_ui HTTP/1.1" 200 -
+2025-04-20 03:48:47 INFO 127.0.0.1 - - [20/Apr/2025 03:48:47] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:49:14 INFO Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-20 03:49:14 INFO Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-20 03:49:15 INFO Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-20 03:49:15 INFO Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-20 03:49:16 ERROR Exception on /encrypt [POST]
+Traceback (most recent call last):
+  File "C:\Users\bpier\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\bpier\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\flask\app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "C:\Users\bpier\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\flask\app.py", line 939, in finalize_request
+    response = self.make_response(rv)
+  File "C:\Users\bpier\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\flask\app.py", line 1212, in make_response
+    raise TypeError(
+TypeError: The view function for 'encrypt' did not return a valid response. The function either returned None or ended without a return statement.
+2025-04-20 03:49:16 INFO 127.0.0.1 - - [20/Apr/2025 03:49:16] "[35m[1mPOST /encrypt HTTP/1.1[0m" 500 -
+2025-04-20 03:51:44 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:5000
+ * Running on https://192.168.1.133:5000
+2025-04-20 03:51:44 INFO [33mPress CTRL+C to quit[0m
+2025-04-20 03:51:55 INFO 127.0.0.1 - - [20/Apr/2025 03:51:55] "GET / HTTP/1.1" 200 -
+2025-04-20 03:51:55 INFO 127.0.0.1 - - [20/Apr/2025 03:51:55] "GET /file_crypto_ui HTTP/1.1" 200 -
+2025-04-20 03:51:55 INFO 127.0.0.1 - - [20/Apr/2025 03:51:55] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:51:59 INFO 127.0.0.1 - - [20/Apr/2025 03:51:59] "POST /start_realtime HTTP/1.1" 200 -
+2025-04-20 03:51:59 INFO 127.0.0.1 - - [20/Apr/2025 03:51:59] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:52:01 INFO 127.0.0.1 - - [20/Apr/2025 03:52:01] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:52:04 INFO 127.0.0.1 - - [20/Apr/2025 03:52:04] "POST /start_realtime HTTP/1.1" 200 -
+2025-04-20 03:52:04 INFO 127.0.0.1 - - [20/Apr/2025 03:52:04] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:52:05 INFO 127.0.0.1 - - [20/Apr/2025 03:52:05] "GET / HTTP/1.1" 200 -
+2025-04-20 03:52:05 INFO 127.0.0.1 - - [20/Apr/2025 03:52:05] "GET /file_crypto_ui HTTP/1.1" 200 -
+2025-04-20 03:52:05 INFO 127.0.0.1 - - [20/Apr/2025 03:52:05] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:52:19 INFO 127.0.0.1 - - [20/Apr/2025 03:52:19] "GET /logs HTTP/1.1" 200 -
+2025-04-20 03:52:19 INFO 127.0.0.1 - - [20/Apr/2025 03:52:19] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 03:52:24 INFO 127.0.0.1 - - [20/Apr/2025 03:52:24] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 08:04:39 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.133:5000
+2025-04-20 08:04:39 INFO [33mPress CTRL+C to quit[0m
+2025-04-20 08:04:39 INFO 127.0.0.1 - - [20/Apr/2025 08:04:39] "GET / HTTP/1.1" 200 -
+2025-04-20 08:04:39 INFO 127.0.0.1 - - [20/Apr/2025 08:04:39] "GET /file_crypto_ui HTTP/1.1" 200 -
+2025-04-20 08:04:39 INFO 127.0.0.1 - - [20/Apr/2025 08:04:39] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-04-20 08:04:41 INFO 127.0.0.1 - - [20/Apr/2025 08:04:41] "POST /start_realtime HTTP/1.1" 200 -
+2025-04-20 08:04:41 INFO 127.0.0.1 - - [20/Apr/2025 08:04:41] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -

@@ -1,0 +1,12 @@
+# Default directories to monitor for malware scanning
+# These paths will be expanded using os.path.expanduser and os.path.expandvars
+
+~/Downloads
+~/Documents
+~/Desktop
+%PROGRAMFILES%
+%PROGRAMFILES(X86)%
+%APPDATA%
+%LOCALAPPDATA%
+%TEMP%
+%USERPROFILE%\AppData\Local\Temp

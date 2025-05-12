@@ -1,0 +1,2281 @@
+[2025-04-24 23:12:19.510851] LOGIC EXCEPTION:
+Traceback (most recent call last):
+  File "C:\Users\bpier\Desktop\antivirus\antivirus\antivirus\app.py", line 954, in run_conditional_startup
+    output = run_conditional_startup_logic()
+  File "C:\Users\bpier\Desktop\antivirus\antivirus\antivirus\conditional_startup.py", line 227, in run_conditional_startup_logic
+    time.sleep(interval)
+NameError: name 'time' is not defined
+
+[2025-04-24 23:14:21.255544] LOGIC EXCEPTION:
+Traceback (most recent call last):
+  File "C:\Users\bpier\Desktop\antivirus\antivirus\antivirus\app.py", line 954, in run_conditional_startup
+    output = run_conditional_startup_logic()
+  File "C:\Users\bpier\Desktop\antivirus\antivirus\antivirus\conditional_startup.py", line 227, in run_conditional_startup_logic
+    time.sleep(interval)
+NameError: name 'time' is not defined
+
+[2025-04-25 09:29:24.163812] Ran run_conditional_startup_logic
+[ERROR] antivirus_server.exe not found in C:\Users\bpier\Desktop\antivirus!
+[conditional_startup] Scheduled scan is disabled. No components started.
+
+[2025-04-25 09:42:09.570665] LOGIC EXCEPTION:
+Traceback (most recent call last):
+  File "C:\Users\bpier\Desktop\antivirus\app.py", line 951, in run_conditional_startup
+    output = run_conditional_startup_logic()
+  File "C:\Users\bpier\Desktop\antivirus\conditional_startup.py", line 222, in run_conditional_startup_logic
+    time.sleep(interval)
+NameError: name 'time' is not defined
+
+[2025-04-25 09:42:27.404948] LOGIC EXCEPTION:
+Traceback (most recent call last):
+  File "C:\Users\bpier\Desktop\antivirus\app.py", line 951, in run_conditional_startup
+    output = run_conditional_startup_logic()
+  File "C:\Users\bpier\Desktop\antivirus\conditional_startup.py", line 222, in run_conditional_startup_logic
+    time.sleep(interval)
+NameError: name 'time' is not defined
+
+[2025-04-26 06:20:47.993369] LOGIC EXCEPTION:
+Traceback (most recent call last):
+  File "C:\Users\bpier\Downloads\antivirus\app.py", line 929, in run_conditional_startup
+    output = run_conditional_startup_logic()
+  File "C:\Users\bpier\Downloads\antivirus\conditional_startup.py", line 222, in run_conditional_startup_logic
+    time.sleep(interval)
+NameError: name 'time' is not defined
+
+[2025-04-26 22:50:26.561242] LOGIC EXCEPTION:
+Traceback (most recent call last):
+  File "C:\Users\bpier\Downloads\antivirus\app.py", line 929, in run_conditional_startup
+    output = run_conditional_startup_logic()
+  File "C:\Users\bpier\Downloads\antivirus\conditional_startup.py", line 222, in run_conditional_startup_logic
+    time.sleep(interval)
+NameError: name 'time' is not defined
+
+[2025-04-29 01:01:57.757034] LOGIC EXCEPTION:
+Traceback (most recent call last):
+  File "C:\Users\bpier\Downloads\antivirus\app.py", line 995, in run_conditional_startup
+    output = run_conditional_startup_logic()
+  File "C:\Users\bpier\Downloads\antivirus\conditional_startup.py", line 222, in run_conditional_startup_logic
+    time.sleep(interval)
+NameError: name 'time' is not defined
+
+[2025-04-29 01:02:10.502503] LOGIC EXCEPTION:
+Traceback (most recent call last):
+  File "C:\Users\bpier\Downloads\antivirus\app.py", line 995, in run_conditional_startup
+    output = run_conditional_startup_logic()
+  File "C:\Users\bpier\Downloads\antivirus\conditional_startup.py", line 222, in run_conditional_startup_logic
+    time.sleep(interval)
+NameError: name 'time' is not defined
+
+[2025-04-29 02:06:30.487390] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Downloads\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 03:25:21.617011] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Downloads\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup][process_scan] No malware detected. Defender output: 
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 06:32:05.786741] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Downloads\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 07:37:50.688284] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Downloads\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 08:04:11.091934] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Downloads\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 08:36:47.639885] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Downloads\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 11:54:32.069849] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 11:56:19.935470] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 11:56:33.204768] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 11:57:05.980751] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 12:10:21.755030] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 12:13:38.753315] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running full system scan...
+[conditional_startup] Monitored folders for scan: []
+[conditional_startup] Full system scan complete.
+[conditional_startup] Running YARA scan...
+[conditional_startup] YARA scan complete.
+[conditional_startup] Scanning running processes...
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup][process_scan] No malware found in signature database
+[conditional_startup] Process scan complete.
+[conditional_startup] Quarantine contains 0 files.
+[conditional_startup] All scans and quarantine management complete.
+
+[2025-04-29 15:58:50.221969] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:06:25.565743] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:09:30.183575] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:09:45.697429] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:20:14.986889] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:20:23.655589] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:25:28.694605] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:30:09.989511] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:30:24.543542] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:48:41.093735] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:55:55.941320] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 16:57:15.389784] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 17:08:12.175935] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 17:08:53.013750] Ran run_conditional_startup_logic
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Import error: No module named 'utils.paths'; 'utils' is not a package
+
+[2025-04-29 17:17:06.277944] Ran run_conditional_startup_logic
+[conditional_startup] Found paths.py at: C:\Users\bpier\Desktop\windows defender\antivirus\utils\paths.py
+[conditional_startup] Successfully loaded scan utilities.
+[conditional_startup] Found app.py at: C:\Users\bpier\Desktop\windows defender\antivirus\app.py
+[conditional_startup] app.py started.
+[conditional_startup] antivirus_cli.py started.
+[conditional_startup] Running scheduled scans...
+[conditional_startup] Monitored folders: []
+

@@ -1,0 +1,173 @@
+2025-05-11 19:31:50,759 - INFO - Network monitoring started
+2025-05-11 19:32:15,126 - INFO - Network monitoring started
+2025-05-11 19:32:20,208 - INFO - Security ML model loaded successfully
+2025-05-11 19:32:21,020 - DEBUG - matplotlib data path: C:\Users\bpier\OneDrive\Documents\windows.defender\windows defender\antivirus\venv\Lib\site-packages\matplotlib\mpl-data
+2025-05-11 19:32:21,035 - DEBUG - CONFIGDIR=C:\Users\bpier\.matplotlib
+2025-05-11 19:32:21,037 - DEBUG - interactive is False
+2025-05-11 19:32:21,038 - DEBUG - platform is win32
+2025-05-11 19:32:21,139 - DEBUG - CACHEDIR=C:\Users\bpier\.matplotlib
+2025-05-11 19:32:21,258 - DEBUG - Using fontManager instance from C:\Users\bpier\.matplotlib\fontlist-v390.json
+2025-05-11 19:32:26,570 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:32:26,819 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level1.netset HTTP/1.1" 200 15995
+2025-05-11 19:32:26,837 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:32:27,393 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level2.netset HTTP/1.1" 200 67642
+2025-05-11 19:32:27,958 - DEBUG - Starting new HTTPS connection (1): www.spamhaus.org:443
+2025-05-11 19:32:28,674 - DEBUG - https://www.spamhaus.org:443 "GET /drop/drop.txt HTTP/1.1" 200 None
+2025-05-11 19:32:29,199 - DEBUG - Starting new HTTPS connection (1): feodotracker.abuse.ch:443
+2025-05-11 19:32:29,892 - DEBUG - https://feodotracker.abuse.ch:443 "GET /downloads/ipblocklist.txt HTTP/1.1" 200 259
+2025-05-11 19:32:35,769 - ERROR - DNS lookup failed for 223.247.218.112: All nameservers failed to answer the query cpuxnbwdexen.112.218.247.223.dnsbl.httpbl.org. IN A: Server Do53:192.168.1.1@53 answered SERVFAIL
+2025-05-11 19:32:36,064 - INFO - Loaded 0 IPs from fallback file
+2025-05-11 19:32:36,434 - INFO - Final list contains 0 suspicious IPs from 5/5 successful sources
+2025-05-11 19:32:36,948 - INFO - Fetching external IP blacklists...
+2025-05-11 19:32:37,065 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:32:37,850 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level1.netset HTTP/1.1" 200 15995
+2025-05-11 19:32:38,045 - ERROR - Error initializing segments: 'web'
+2025-05-11 19:32:38,221 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:32:38,225 - DEBUG - Starting new HTTPS connection (1): www.virustotal.com:443
+2025-05-11 19:32:38,458 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level2.netset HTTP/1.1" 200 67642
+2025-05-11 19:32:38,612 - DEBUG - https://www.virustotal.com:443 "GET /api/v3/intelligence/search?query=malware&limit=100 HTTP/1.1" 401 91
+2025-05-11 19:32:38,615 - DEBUG - Starting new HTTPS connection (1): api.abuseipdb.com:443
+2025-05-11 19:32:38,645 - DEBUG - Starting new HTTPS connection (1): www.spamhaus.org:443
+2025-05-11 19:32:38,967 - DEBUG - https://www.spamhaus.org:443 "GET /drop/drop.txt HTTP/1.1" 200 None
+2025-05-11 19:32:39,046 - DEBUG - Starting new HTTPS connection (1): feodotracker.abuse.ch:443
+2025-05-11 19:32:39,068 - DEBUG - https://api.abuseipdb.com:443 "GET /api/v2/blacklist HTTP/1.1" 401 None
+2025-05-11 19:32:39,490 - DEBUG - https://feodotracker.abuse.ch:443 "GET /downloads/ipblocklist.txt HTTP/1.1" 200 259
+2025-05-11 19:32:45,316 - INFO - Security ML model loaded successfully
+2025-05-11 19:32:45,319 - DEBUG - Starting new HTTPS connection (1): www.virustotal.com:443
+2025-05-11 19:32:45,728 - DEBUG - https://www.virustotal.com:443 "GET /api/v3/intelligence/search?query=malware&limit=100 HTTP/1.1" 401 91
+2025-05-11 19:32:45,730 - DEBUG - Starting new HTTPS connection (1): api.abuseipdb.com:443
+2025-05-11 19:32:46,145 - DEBUG - https://api.abuseipdb.com:443 "GET /api/v2/blacklist HTTP/1.1" 401 None
+2025-05-11 19:32:46,146 - INFO - Added user folder: C:\Users\bpier\Downloads
+2025-05-11 19:32:46,147 - INFO - Added user folder: C:\Users\bpier\Documents
+2025-05-11 19:32:46,147 - INFO - Added user folder: C:\Users\bpier\Videos
+2025-05-11 19:32:46,147 - INFO - Added drive root: C:\
+2025-05-11 19:32:46,147 - INFO - Added Recycle Bin: C:\$Recycle.Bin
+2025-05-11 19:32:46,147 - INFO - Added Program Files: C:\Program Files
+2025-05-11 19:32:46,148 - INFO - Added Program Files (x86): C:\Program Files (x86)
+2025-05-11 19:32:46,148 - INFO - Added Users folder: C:\Users
+2025-05-11 19:32:46,148 - INFO - Added custom directory from config: C:\Users\bpier/Downloads
+2025-05-11 19:32:46,148 - INFO - Added custom directory from config: C:\Users\bpier/Documents
+2025-05-11 19:32:46,149 - INFO - Added custom directory from config: C:\Users\bpier\AppData\Roaming
+2025-05-11 19:32:46,149 - INFO - Added custom directory from config: C:\Users\bpier\AppData\Local
+2025-05-11 19:32:46,149 - INFO - Added custom directory from config: C:\Users\bpier\AppData\Local\Temp
+2025-05-11 19:32:46,149 - INFO - Total directories to monitor: 13
+2025-05-11 19:32:46,166 - INFO - Generated new encryption key
+2025-05-11 19:32:46,167 - INFO - Started key rotation thread
+2025-05-11 19:32:46,168 - INFO - Network encryption enabled
+2025-05-11 19:32:46,615 - INFO - Network monitoring started
+2025-05-11 19:32:47,346 - INFO - Initializing threat detection model
+2025-05-11 19:32:47,639 - INFO - ML model initialized successfully
+2025-05-11 19:32:48,604 - ERROR - DNS lookup failed for 223.247.218.112: All nameservers failed to answer the query cpuxnbwdexen.112.218.247.223.dnsbl.httpbl.org. IN A: Server Do53:192.168.1.1@53 answered SERVFAIL
+2025-05-11 19:32:48,998 - INFO - Loaded 0 IPs from fallback file
+2025-05-11 19:32:49,579 - INFO - Final list contains 0 suspicious IPs from 5/5 successful sources
+2025-05-11 19:32:49,725 - INFO - Updated BLACKLISTED_IPS with 0 entries.
+2025-05-11 19:32:49,948 - INFO - Updated local fallback file with the latest blacklist.
+2025-05-11 19:32:58,475 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.0.2:5000
+2025-05-11 19:32:58,815 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 19:32:59,967 - INFO -  * Restarting with watchdog (windowsapi)
+2025-05-11 19:34:10,104 - INFO - Network monitoring started
+2025-05-11 19:34:16,474 - INFO - Security ML model loaded successfully
+2025-05-11 19:34:23,711 - DEBUG - matplotlib data path: C:\Users\bpier\OneDrive\Documents\windows.defender\windows defender\antivirus\venv\Lib\site-packages\matplotlib\mpl-data
+2025-05-11 19:34:23,742 - DEBUG - CONFIGDIR=C:\Users\bpier\.matplotlib
+2025-05-11 19:34:23,742 - DEBUG - interactive is False
+2025-05-11 19:34:23,742 - DEBUG - platform is win32
+2025-05-11 19:34:23,790 - DEBUG - CACHEDIR=C:\Users\bpier\.matplotlib
+2025-05-11 19:34:23,792 - DEBUG - Using fontManager instance from C:\Users\bpier\.matplotlib\fontlist-v390.json
+2025-05-11 19:34:51,197 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:34:51,455 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level1.netset HTTP/1.1" 200 15995
+2025-05-11 19:34:51,617 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:34:52,058 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level2.netset HTTP/1.1" 200 67642
+2025-05-11 19:34:52,805 - DEBUG - Starting new HTTPS connection (1): www.spamhaus.org:443
+2025-05-11 19:34:53,423 - DEBUG - https://www.spamhaus.org:443 "GET /drop/drop.txt HTTP/1.1" 200 None
+2025-05-11 19:34:53,876 - DEBUG - Starting new HTTPS connection (1): feodotracker.abuse.ch:443
+2025-05-11 19:34:54,842 - DEBUG - https://feodotracker.abuse.ch:443 "GET /downloads/ipblocklist.txt HTTP/1.1" 200 259
+2025-05-11 19:36:56,380 - ERROR - DNS lookup failed for 223.247.218.112: All nameservers failed to answer the query cpuxnbwdexen.112.218.247.223.dnsbl.httpbl.org. IN A: Server Do53:192.168.1.1@53 answered SERVFAIL
+2025-05-11 19:36:56,588 - INFO - Loaded 0 IPs from fallback file
+2025-05-11 19:36:56,709 - INFO - Final list contains 0 suspicious IPs from 5/5 successful sources
+2025-05-11 19:36:56,842 - INFO - Fetching external IP blacklists...
+2025-05-11 19:36:57,176 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:36:57,276 - ERROR - Error initializing segments: 'database'
+2025-05-11 19:36:57,599 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level1.netset HTTP/1.1" 200 15995
+2025-05-11 19:36:57,711 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:36:58,221 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level2.netset HTTP/1.1" 200 67642
+2025-05-11 19:36:58,736 - DEBUG - Starting new HTTPS connection (1): www.spamhaus.org:443
+2025-05-11 19:36:58,980 - DEBUG - Starting new HTTPS connection (1): www.virustotal.com:443
+2025-05-11 19:36:59,510 - DEBUG - https://www.virustotal.com:443 "GET /api/v3/intelligence/search?query=malware&limit=100 HTTP/1.1" 401 91
+2025-05-11 19:36:59,737 - DEBUG - Starting new HTTPS connection (1): api.abuseipdb.com:443
+2025-05-11 19:36:59,949 - DEBUG - https://www.spamhaus.org:443 "GET /drop/drop.txt HTTP/1.1" 200 None
+2025-05-11 19:37:00,339 - DEBUG - https://api.abuseipdb.com:443 "GET /api/v2/blacklist HTTP/1.1" 401 None
+2025-05-11 19:37:00,491 - DEBUG - Starting new HTTPS connection (1): feodotracker.abuse.ch:443
+2025-05-11 19:37:02,283 - INFO - Network monitoring started
+2025-05-11 19:37:08,392 - INFO - Security ML model loaded successfully
+2025-05-11 19:37:14,962 - DEBUG - matplotlib data path: C:\Users\bpier\OneDrive\Documents\windows.defender\windows defender\antivirus\venv\Lib\site-packages\matplotlib\mpl-data
+2025-05-11 19:37:14,991 - DEBUG - CONFIGDIR=C:\Users\bpier\.matplotlib
+2025-05-11 19:37:14,993 - DEBUG - interactive is False
+2025-05-11 19:37:14,993 - DEBUG - platform is win32
+2025-05-11 19:37:15,050 - DEBUG - CACHEDIR=C:\Users\bpier\.matplotlib
+2025-05-11 19:37:15,063 - DEBUG - Using fontManager instance from C:\Users\bpier\.matplotlib\fontlist-v390.json
+2025-05-11 19:37:21,231 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:37:21,598 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level1.netset HTTP/1.1" 200 15995
+2025-05-11 19:37:21,871 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:37:22,628 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level2.netset HTTP/1.1" 200 67642
+2025-05-11 19:37:23,195 - DEBUG - Starting new HTTPS connection (1): www.spamhaus.org:443
+2025-05-11 19:37:23,851 - DEBUG - https://www.spamhaus.org:443 "GET /drop/drop.txt HTTP/1.1" 200 None
+2025-05-11 19:37:24,320 - DEBUG - Starting new HTTPS connection (1): feodotracker.abuse.ch:443
+2025-05-11 19:37:25,002 - DEBUG - https://feodotracker.abuse.ch:443 "GET /downloads/ipblocklist.txt HTTP/1.1" 200 259
+2025-05-11 19:37:27,513 - ERROR - DNS lookup failed for 223.247.218.112: module 'dns.resolver' has no attribute 'SERVFAIL'
+2025-05-11 19:37:27,514 - INFO - Loaded 0 IPs from fallback file
+2025-05-11 19:37:27,515 - INFO - Final list contains 0 suspicious IPs from 5/5 successful sources
+2025-05-11 19:37:27,516 - INFO - Fetching external IP blacklists...
+2025-05-11 19:37:27,517 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:37:27,518 - ERROR - Error initializing segments: 'database'
+2025-05-11 19:37:27,731 - DEBUG - Starting new HTTPS connection (1): www.virustotal.com:443
+2025-05-11 19:37:27,971 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level1.netset HTTP/1.1" 200 15995
+2025-05-11 19:37:28,378 - DEBUG - Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-05-11 19:37:28,488 - DEBUG - https://www.virustotal.com:443 "GET /api/v3/intelligence/search?query=malware&limit=100 HTTP/1.1" 401 91
+2025-05-11 19:37:28,534 - DEBUG - Starting new HTTPS connection (1): api.abuseipdb.com:443
+2025-05-11 19:37:28,987 - DEBUG - https://raw.githubusercontent.com:443 "GET /firehol/blocklist-ipsets/master/firehol_level2.netset HTTP/1.1" 200 67642
+2025-05-11 19:37:29,221 - DEBUG - https://api.abuseipdb.com:443 "GET /api/v2/blacklist HTTP/1.1" 401 None
+2025-05-11 19:37:29,528 - DEBUG - Starting new HTTPS connection (1): www.spamhaus.org:443
+2025-05-11 19:37:30,295 - DEBUG - https://www.spamhaus.org:443 "GET /drop/drop.txt HTTP/1.1" 200 None
+2025-05-11 19:37:30,815 - DEBUG - Starting new HTTPS connection (1): feodotracker.abuse.ch:443
+2025-05-11 19:37:31,580 - DEBUG - https://feodotracker.abuse.ch:443 "GET /downloads/ipblocklist.txt HTTP/1.1" 200 259
+2025-05-11 19:37:32,747 - INFO - Security ML model loaded successfully
+2025-05-11 19:37:32,750 - DEBUG - Starting new HTTPS connection (1): www.virustotal.com:443
+2025-05-11 19:37:33,036 - ERROR - DNS lookup failed for 223.247.218.112: module 'dns.resolver' has no attribute 'SERVFAIL'
+2025-05-11 19:37:33,037 - INFO - Loaded 0 IPs from fallback file
+2025-05-11 19:37:33,037 - INFO - Final list contains 0 suspicious IPs from 5/5 successful sources
+2025-05-11 19:37:33,037 - INFO - Updated BLACKLISTED_IPS with 0 entries.
+2025-05-11 19:37:33,038 - INFO - Updated blacklist fallback file
+2025-05-11 19:37:33,219 - DEBUG - https://www.virustotal.com:443 "GET /api/v3/intelligence/search?query=malware&limit=100 HTTP/1.1" 401 91
+2025-05-11 19:37:33,371 - DEBUG - Starting new HTTPS connection (1): api.abuseipdb.com:443
+2025-05-11 19:37:33,904 - DEBUG - https://api.abuseipdb.com:443 "GET /api/v2/blacklist HTTP/1.1" 401 None
+2025-05-11 19:37:34,255 - INFO - Added user folder: C:\Users\bpier\Downloads
+2025-05-11 19:37:34,350 - INFO - Added user folder: C:\Users\bpier\Documents
+2025-05-11 19:37:34,570 - INFO - Added user folder: C:\Users\bpier\Videos
+2025-05-11 19:37:34,924 - INFO - Added drive root: C:\
+2025-05-11 19:37:35,047 - INFO - Added Recycle Bin: C:\$Recycle.Bin
+2025-05-11 19:37:35,141 - INFO - Added Program Files: C:\Program Files
+2025-05-11 19:37:35,204 - INFO - Added Program Files (x86): C:\Program Files (x86)
+2025-05-11 19:37:35,323 - INFO - Added Users folder: C:\Users
+2025-05-11 19:37:35,539 - INFO - Added custom directory from config: C:\Users\bpier/Downloads
+2025-05-11 19:37:35,617 - INFO - Added custom directory from config: C:\Users\bpier/Documents
+2025-05-11 19:37:35,791 - INFO - Added custom directory from config: C:\Users\bpier\AppData\Roaming
+2025-05-11 19:37:35,898 - INFO - Added custom directory from config: C:\Users\bpier\AppData\Local
+2025-05-11 19:37:36,112 - INFO - Added custom directory from config: C:\Users\bpier\AppData\Local\Temp
+2025-05-11 19:37:36,235 - INFO - Total directories to monitor: 13
+2025-05-11 19:37:38,012 - INFO - Generated new encryption key
+2025-05-11 19:37:38,013 - INFO - Started key rotation thread
+2025-05-11 19:37:38,013 - INFO - Network encryption enabled
+2025-05-11 19:37:38,039 - INFO - Network monitoring started
+2025-05-11 19:37:38,277 - INFO - Initializing threat detection model
+2025-05-11 19:37:38,319 - INFO - ML model initialized successfully
+2025-05-11 19:37:44,811 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.2.0.2:5000
+2025-05-11 19:37:44,873 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 19:37:45,107 - INFO -  * Restarting with watchdog (windowsapi)
+2025-05-11 19:39:42,613 - INFO - Network monitoring started
+2025-05-11 19:39:43,784 - INFO - Network monitoring started

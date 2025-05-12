@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conditional Startup Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <style>
+        body { max-width: 700px; margin: 2em auto; font-family: Arial, sans-serif; background: #f8f9fa; }
+        h2 { color: #2d5f9a; }
+        pre { background: #fff3cd; color: #222; padding: 1em; border-radius: 6px; max-height: 500px; overflow: auto; }
+        nav a { margin-right: 1em; }
+    </style>
+</head>
+<body>
+    <h2>Conditional Startup Output</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div style="background:#eafaf1;color:#006644;padding:1em;margin:1em 0;border-radius:6px;">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <pre>{{ output }}</pre>
+    <nav>
+        <a href="/">Back to Home</a>
+        <a href="/logs">View Antivirus Logs</a>
+        <a href="/quarantine">Manage Quarantine</a>
+    </nav>
+</body>
+</html>
