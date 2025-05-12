@@ -1,2 +1,66 @@
+# Specific large files
 uploads/malware_signatures.txt
 yara_scanner.log
+
+# Log files
+*.log
+logs/
+*.log.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary and cached files
+*.tmp
+.cache/
+tmp/
+temp/
+
+# YARA related 
+*.yara.compiled
+yara_rules/*.compiled
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Keep important files/folders (add ! in front)
+!uploads/README.md
+!logs/README.md
