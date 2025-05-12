@@ -124,11 +124,12 @@
         </div>
         
         <div class="tab">
-            <button class="tablinks active" onclick="openTab(event, 'FileScan')">File Scan</button>
-            <button class="tablinks" onclick="openTab(event, 'MonitoredFolders')">Monitored Folders</button>
-            <button class="tablinks" onclick="openTab(event, 'Quarantine')">Quarantine</button>
-            <button class="tablinks" onclick="openTab(event, 'MainDashboard')">Main Dashboard</button>
-            <button class="tablinks" onclick="openTab(event, 'ThreatHandling')">Threat Handling</button>
+            <button class="tablinks active" id="fileScanTab">File Scan</button>
+            <button class="tablinks" id="monitoredFoldersTab">Monitored Folders</button>
+            <button class="tablinks" id="networkMonitorTab">Network Monitoring</button>
+            <button class="tablinks" id="quarantineTab">Quarantine</button>
+            <button class="tablinks" id="mainDashboardTab">Main Dashboard</button>
+            <button class="tablinks" id="threatHandlingTab">Threat Handling</button>
         </div>
         
         <div id="FileScan" class="tabcontent" style="display: block;">
@@ -410,8 +411,38 @@ document.getElementById('start_folder_watcher_btn').onclick = function() {
         <div class="results" id="results"></div>
     </div>
     
+    <!-- Add Network Monitoring Tab Content -->
+    <div id="NetworkMonitor" class="tabcontent">
+        <h2>Network Monitoring</h2>
+        <p>Monitor network traffic for suspicious activity and potential threats.</p>
+
+        <div class="card">
+            <h3>Network Monitor Status</h3>
+            <p>Status: <span id="network_monitor_status">{{ 'Enabled' if network_monitor_running else 'Disabled' }}</span></p>
+            <div class="button-group">
+                <button id="start_network_monitor_btn" class="action-button">Start Network Monitoring</button>
+                <button id="stop_network_monitor_btn" class="action-button">Stop Network Monitoring</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Monitored Network Directories</h3>
+            <div id="monitored_directories">
+                <p>Loading monitored directories...</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Traffic Statistics</h3>
+            <div id="traffic_stats">
+                <p>Network monitoring must be enabled to view traffic statistics.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function openTab(evt, tabName) {
+        // Tab switching function without using inline onclick
+        function openTab(tabElem, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
@@ -422,7 +453,7 @@ document.getElementById('start_folder_watcher_btn').onclick = function() {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
             document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
+            tabElem.className += " active";
         }
         
         document.getElementById("fileScanForm").addEventListener("submit", function(e) {
@@ -559,9 +590,145 @@ document.getElementById('start_folder_watcher_btn').onclick = function() {
         // Folder removal functionality has been disabled for security reasons
         
         // Load monitored folders when the tab is clicked
-        document.querySelector('button[onclick="openTab(event, \'MonitoredFolders\')"]').addEventListener('click', function() {
-            loadMonitoredDirectories();
+        // Initialize tab event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching event listeners
+            document.getElementById('fileScanTab').addEventListener('click', function() {
+                openTab(this, 'FileScan');
+            });
+            
+            document.getElementById('monitoredFoldersTab').addEventListener('click', function() {
+                openTab(this, 'MonitoredFolders');
+                loadMonitoredDirectories();
+            });
+            
+            document.getElementById('networkMonitorTab').addEventListener('click', function() {
+                openTab(this, 'NetworkMonitor');
+                fetchNetworkMonitoredDirectories();
+            });
+            
+            document.getElementById('quarantineTab').addEventListener('click', function() {
+                openTab(this, 'Quarantine');
+            });
+            
+            document.getElementById('mainDashboardTab').addEventListener('click', function() {
+                openTab(this, 'MainDashboard');
+            });
+            
+            document.getElementById('threatHandlingTab').addEventListener('click', function() {
+                openTab(this, 'ThreatHandling');
+            });
+            
+            // Network monitoring button handlers
+            document.getElementById('start_network_monitor_btn').addEventListener('click', function() {
+                startNetworkMonitor();
+            });
+            
+            document.getElementById('stop_network_monitor_btn').addEventListener('click', function() {
+                stopNetworkMonitor();
+            });
         });
+        
+        // Network monitoring functions
+        function startNetworkMonitor() {
+            fetch('/toggle_network_monitor/start', {method: 'POST'})
+                .then(async response => {
+                    let text = await response.text();
+                    let data;
+                    try { data = JSON.parse(text); } catch (e) { alert('Unexpected server response: ' + text); return; }
+                    if (data.status === 'success' || data.status === 'ENABLED') { 
+                        alert(data.message || 'Network Monitor started.'); 
+                        // Update the network monitor status in the UI
+                        document.getElementById('network_monitor_status').textContent = 'Enabled';
+                        document.getElementById('network_monitor_status').style.color = '#27ae60';
+                        
+                        // Fetch network directories after starting
+                        fetchNetworkMonitoredDirectories();
+                    } else { 
+                        alert('Error: ' + (data.message || data.error || 'Unknown error')); 
+                    }
+                })
+                .catch(error => alert('Error: ' + error));
+        }
+        
+        function stopNetworkMonitor() {
+            fetch('/toggle_network_monitor/stop', {method: 'POST'})
+                .then(async response => {
+                    let text = await response.text();
+                    let data;
+                    try { data = JSON.parse(text); } catch (e) { alert('Unexpected server response: ' + text); return; }
+                    if (data.status === 'success' || data.status === 'DISABLED') { 
+                        alert(data.message || 'Network Monitor stopped.'); 
+                        // Update the network monitor status in the UI
+                        document.getElementById('network_monitor_status').textContent = 'Disabled';
+                        document.getElementById('network_monitor_status').style.color = '#c0392b';
+                    } else { 
+                        alert('Error: ' + (data.message || data.error || 'Unknown error')); 
+                    }
+                })
+                .catch(error => alert('Error: ' + error));
+        }
+        
+        function fetchNetworkMonitoredDirectories() {
+            fetch('/get_network_monitored_directories')
+                .then(response => response.json())
+                .then(data => {
+                    updateNetworkMonitoredDirectoriesDisplay(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching network monitored directories:', error);
+                });
+        }
+        
+        function updateNetworkMonitoredDirectoriesDisplay(data) {
+            const directoriesContainer = document.getElementById('monitored_directories');
+            
+            // Clear previous contents
+            directoriesContainer.innerHTML = '';
+            
+            // Display monitoring status
+            if (data && data.success) {
+                const status = data.monitoring_status;
+                const statusDiv = document.createElement('div');
+                statusDiv.className = 'monitoring-status';
+                statusDiv.innerHTML = `
+                    <p><strong>Status:</strong> <span class="${status.enabled ? 'enabled' : 'disabled'}">${status.enabled ? 'ENABLED' : 'DISABLED'}</span></p>
+                    <p><strong>Last Scan:</strong> ${status.last_scan}</p>
+                    <p><strong>Total Monitored:</strong> ${status.total_directories} directories</p>
+                `;
+                directoriesContainer.appendChild(statusDiv);
+                
+                // Display directory list
+                if (status.directories && status.directories.length > 0) {
+                    const list = document.createElement('ul');
+                    list.className = 'directories-list';
+                    
+                    status.directories.forEach(dir => {
+                        const li = document.createElement('li');
+                        const statusClass = dir.exists && dir.accessible ? 'directory-active' : 'directory-inactive';
+                        const statusIcon = dir.exists && dir.accessible ? '✓' : '⚠️';
+                        
+                        li.innerHTML = `<span class="${statusClass}">${statusIcon}</span> ${dir.path}`;
+                        
+                        // Add file count if available
+                        if (dir.file_count !== undefined) {
+                            li.innerHTML += ` <span class="file-count">(${dir.file_count} files)</span>`;
+                        }
+                        
+                        list.appendChild(li);
+                    });
+                    
+                    directoriesContainer.appendChild(list);
+                } else {
+                    directoriesContainer.innerHTML += '<p>No directories currently being monitored.</p>';
+                }
+            } else {
+                directoriesContainer.innerHTML = '<p>Error loading monitored directories.</p>';
+            }
+        }
+        
+        // Initial load of monitored folders
+        loadMonitoredDirectories();
         
         // Also load on page init if MonitoredFolders is the active tab
         document.addEventListener('DOMContentLoaded', function() {

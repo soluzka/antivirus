@@ -688,6 +688,18 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
             `;
         }
             
+        // Function to fetch monitored network directories
+        function fetchMonitoredNetworkDirectories() {
+            fetch('/get_network_monitored_directories')
+                .then(response => response.json())
+                .then(data => {
+                    updateMonitoredDirectoriesDisplay(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching monitored network directories:', error);
+                });
+        }
+
         // Initialize button states and start monitoring if enabled
         window.addEventListener('load', () => {
             updateAllButtons();
@@ -695,6 +707,7 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
             // If network monitor is running, start traffic monitoring
             if (window.serviceStates.networkMonitorRunning) {
                 startTrafficMonitoring();
+                fetchMonitoredNetworkDirectories(); // Fetch directories on load if monitoring is running
             }
         });
 
@@ -956,10 +969,48 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
     });
 
     document.getElementById('start_network_monitor_btn').onclick = function() {
-        alert('Network Monitor feature is not implemented.');
+        fetch('/toggle_network_monitor/start', {method: 'POST'})
+            .then(async response => {
+                let text = await response.text();
+                let data;
+                try { data = JSON.parse(text); } catch (e) { alert('Unexpected server response: ' + text); return; }
+                if (data.status === 'success' || data.status === 'ENABLED') { 
+                    alert(data.message || 'Network Monitor started.'); 
+                    // Update the network monitor status in the UI
+                    if (document.getElementById('network_monitor_status')) {
+                        document.getElementById('network_monitor_status').textContent = 'Enabled';
+                        document.getElementById('network_monitor_status').style.color = '#27ae60';
+                    }
+                    // Start updating traffic stats
+                    window.serviceStates.networkMonitorRunning = true;
+                    updateTrafficStats();
+                    // Show monitored network directories
+                    fetchMonitoredNetworkDirectories();
+                } else { 
+                    alert('Error: ' + (data.message || data.error || 'Unknown error')); 
+                }
+            })
+            .catch(error => alert('Error: ' + error));
     };
     document.getElementById('stop_network_monitor_btn').onclick = function() {
-        alert('Network Monitor feature is not implemented.');
+        fetch('/toggle_network_monitor/stop', {method: 'POST'})
+            .then(async response => {
+                let text = await response.text();
+                let data;
+                try { data = JSON.parse(text); } catch (e) { alert('Unexpected server response: ' + text); return; }
+                if (data.status === 'success' || data.status === 'DISABLED') { 
+                    alert(data.message || 'Network Monitor stopped.'); 
+                    // Update the network monitor status in the UI
+                    if (document.getElementById('network_monitor_status')) {
+                        document.getElementById('network_monitor_status').textContent = 'Disabled';
+                        document.getElementById('network_monitor_status').style.color = '#c0392b';
+                    }
+                    window.serviceStates.networkMonitorRunning = false;
+                } else { 
+                    alert('Error: ' + (data.message || data.error || 'Unknown error')); 
+                }
+            })
+            .catch(error => alert('Error: ' + error));
     };
     document.getElementById('start_folder_watcher_btn').onclick = function() {
         fetch('/toggle_folder_watcher/start', {method: 'POST'})

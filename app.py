@@ -33,6 +33,12 @@ import shutil
 
 # Import YARA scanner functionality
 from security.yara_scanner import load_yara_rules, scan_file_with_yara, scan_all_folders_with_yara
+# Import network directories module
+from network_directories import get_network_monitored_directories
+# Import network monitor integration module
+from network_monitor_integration import register_network_monitor_endpoints
+# Import network endpoint handler
+from network_endpoint import get_network_monitored_directories_handler
 import re
 
 # Setup global logging
@@ -49,6 +55,9 @@ logger = logging.getLogger('antivirus')
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app)
+
+# Register network monitoring endpoints
+register_network_monitor_endpoints(app)
 
 # Initialize network monitor instance at module level
 network_monitor = NetworkMonitor()
@@ -1545,18 +1554,18 @@ class FolderWatcher:
         return self.directories
 
 # Create a single instance of the folder watcher
-        # Get common directories to monitor
-        home_dir = os.path.expanduser("~")
-        common_dirs = [
-            os.path.join(home_dir, "Downloads"),
-            os.path.join(home_dir, "Desktop"),
-            os.path.join(home_dir, "Documents")
-        ]
-        
-        # Filter out non-existent directories
-        directories = [d for d in common_dirs if os.path.exists(d) and os.path.isdir(d)]
-        
-        folder_watcher = FolderWatcher(directories)
+# Get common directories to monitor
+home_dir = os.path.expanduser("~")
+common_dirs = [
+    os.path.join(home_dir, "Downloads"),
+    os.path.join(home_dir, "Desktop"),
+    os.path.join(home_dir, "Documents")
+]
+
+# Filter out non-existent directories
+directories = [d for d in common_dirs if os.path.exists(d) and os.path.isdir(d)]
+
+folder_watcher = FolderWatcher(directories)
 
 # Initialize monitored directories
 monitored_directories = load_scan_directories()
@@ -1766,6 +1775,16 @@ def toggle_network_monitor(action):
         })
     except Exception as e:
         logging.error(f"Error toggling network monitor: {str(e)}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+# Route to get network monitored directories
+@app.route('/get_network_monitored_directories', methods=['GET'])
+def get_network_monitored_directories_endpoint():
+    """Get network monitored directories"""
+    try:
+        return get_network_monitored_directories_handler(network_monitor)
+    except Exception as e:
+        logging.error(f"Error getting network monitored directories: {str(e)}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 # --- Ensure start_realtime route exists and works ---
