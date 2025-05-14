@@ -168,6 +168,13 @@ function updateTrafficStats() {
 
 // Function to start traffic monitoring
 function startTrafficMonitoring() {
+    // Check if traffic_stats element exists before trying to monitor traffic
+    const trafficContainer = document.getElementById('traffic_stats');
+    if (!trafficContainer) {
+        console.error('Traffic stats container not found, cannot start monitoring');
+        return;
+    }
+    
     fetch('/start_traffic_monitoring', {
         method: 'POST'
     })
