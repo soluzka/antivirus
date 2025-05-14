@@ -162,9 +162,12 @@
     }
 };
         // Stop Real-Time Protection is disabled for security reasons.
-document.getElementById('stop_realtime_btn').onclick = function() {
-    alert('Disabling real-time protection is not allowed for your security.');
-};
+const stopRealtimeBtn = document.getElementById('stop_realtime_btn');
+if (stopRealtimeBtn) {
+    stopRealtimeBtn.onclick = function() {
+        alert('Disabling real-time protection is not allowed for your security.');
+    };
+}
         // Folder Watcher
 function folderWatcherHandler(action) {
     const btn = action === 'start' ? document.getElementById('start_folder_watcher_btn') : document.getElementById('stop_folder_watcher_btn');
@@ -1303,8 +1306,12 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
             })
             .catch(error => alert('Error: ' + error));
     };
-    document.getElementById('start_folder_watcher_btn').onclick = function() {
-        fetch('/toggle_folder_watcher/start', {method: 'POST'})
+    
+    // Safely handle folder watcher button clicks
+    const startFolderWatcherBtn = document.getElementById('start_folder_watcher_btn');
+    if (startFolderWatcherBtn) {
+        startFolderWatcherBtn.onclick = function() {
+            fetch('/toggle_folder_watcher/start', {method: 'POST'})
             .then(async response => {
                 let text = await response.text();
                 let data;
@@ -1313,9 +1320,14 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                 else { alert('Error: ' + (data.message || data.error || 'Unknown error')); }
             })
             .catch(error => alert('Error: ' + error));
-    };
-    document.getElementById('stop_folder_watcher_btn').onclick = function() {
-        fetch('/toggle_folder_watcher/stop', {method: 'POST'})
+        };
+    }
+    
+    // Safely handle stop folder watcher button
+    const stopFolderWatcherBtn = document.getElementById('stop_folder_watcher_btn');
+    if (stopFolderWatcherBtn) {
+        stopFolderWatcherBtn.onclick = function() {
+            fetch('/toggle_folder_watcher/stop', {method: 'POST'})
             .then(async response => {
                 let text = await response.text();
                 let data;
@@ -1324,9 +1336,14 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                 else { alert('Error: ' + (data.message || data.error || 'Unknown error')); }
             })
             .catch(error => alert('Error: ' + error));
-    };
-    document.getElementById('start_safe_downloader_btn').onclick = function() {
-        fetch('/toggle_safe_downloader/start', {method: 'POST'})
+        };
+    }
+    
+    // Safely handle safe downloader button
+    const startSafeDownloaderBtn = document.getElementById('start_safe_downloader_btn');
+    if (startSafeDownloaderBtn) {
+        startSafeDownloaderBtn.onclick = function() {
+            fetch('/toggle_safe_downloader/start', {method: 'POST'})
             .then(async response => {
                 let text = await response.text();
                 let data;
@@ -1335,9 +1352,14 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                 else { alert('Error: ' + (data.message || data.error || 'Unknown error')); }
             })
             .catch(error => alert('Error: ' + error));
-    };
-    document.getElementById('stop_safe_downloader_btn').onclick = function() {
-        fetch('/toggle_safe_downloader/stop', {method: 'POST'})
+        };
+    }
+    
+    // Safely handle stop safe downloader button
+    const stopSafeDownloaderBtn = document.getElementById('stop_safe_downloader_btn');
+    if (stopSafeDownloaderBtn) {
+        stopSafeDownloaderBtn.onclick = function() {
+            fetch('/toggle_safe_downloader/stop', {method: 'POST'})
             .then(async response => {
                 let text = await response.text();
                 let data;
@@ -1346,7 +1368,8 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                 else { alert('Error: ' + (data.message || data.error || 'Unknown error')); }
             })
             .catch(error => alert('Error: ' + error));
-    };
+        };
+    }
     </script>
     
     <div id="features" style="display: none;">
