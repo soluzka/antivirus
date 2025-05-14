@@ -166,34 +166,183 @@ function updateTrafficStats() {
     });
 }
 
-// Function to start traffic monitoring
+// Function to safely interact with DOM elements
+function safeDomOperation(elementId, operation) {
+    try {
+        const element = document.getElementById(elementId);
+        if (element) {
+            operation(element);
+            return true;
+        } else {
+            console.warn(`Element with ID '${elementId}' not found.`);
+            return false;
+        }
+    } catch (err) {
+        console.error(`Error with element '${elementId}':`, err);
+        return false;
+    }
+}
+
+// Function to start traffic monitoring with enhanced error handling
 function startTrafficMonitoring() {
-    // Check if traffic_stats element exists before trying to monitor traffic
-    const trafficContainer = document.getElementById('traffic_stats');
-    if (!trafficContainer) {
+    // Safely check if traffic_stats element exists
+    if (!safeDomOperation('traffic_stats', function() {})) {
         console.error('Traffic stats container not found, cannot start monitoring');
         return;
     }
     
+    // Initialize window.serviceStates if it doesn't exist
+    if (!window.serviceStates) {
+        window.serviceStates = {
+            networkMonitorRunning: false
+        };
+    }
+    
     fetch('/start_traffic_monitoring', {
-        method: 'POST'
+        method: 'POST',
+        credentials: 'include' // Ensure cookies are sent with the request
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
         console.log('Traffic monitoring started:', data);
+        window.serviceStates.networkMonitorRunning = true;
+        
+        // Start updating traffic stats only if monitoring started successfully
+        if (typeof updateTrafficStats === 'function') {
+            updateTrafficStats();
+        }
+        
+        // Safely update the network monitor status if the function exists
+        if (typeof updateNetworkMonitorStatus === 'function') {
+            updateNetworkMonitorStatus(true);
+        }
+        
+        // Show monitored network directories if the function exists
+        if (typeof fetchMonitoredNetworkDirectories === 'function') {
+            fetchMonitoredNetworkDirectories();
+        }
     })
     .catch(error => {
         console.error('Error starting traffic monitoring:', error);
+        // Display error in traffic stats container
+        safeDomOperation('traffic_stats', function(container) {
+            container.innerHTML = `
+                <div class="alert alert-warning">
+                    Failed to start network monitoring: ${error.message || 'Unknown error'}
+                </div>`;
+        });
     });
-
-    // Start updating traffic stats
-    updateTrafficStats();
     
     // Set up interval to update stats every 3 seconds
     window.trafficStatsInterval = setInterval(updateTrafficStats, 3000);
 }
 
-// Start traffic monitoring when page loads
+/**
+ * Function to fetch and display monitored network directories
+ * This connects to the network_monitor_integration.py endpoint
+ */
+function fetchMonitoredNetworkDirectories() {
+    safeDomOperation('monitored_directories', function(container) {
+        container.innerHTML = '<div class="loading">Loading monitored directories...</div>';
+        
+        fetch('/api/network/monitored_directories')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch monitored directories: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.directories && Array.isArray(data.directories)) {
+                    updateMonitoredDirectoriesDisplay(data);
+                } else {
+                    container.innerHTML = '<div class="alert alert-info">No monitored directories available.</div>';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching monitored directories:', error);
+                container.innerHTML = `<div class="alert alert-warning">Error loading monitored directories: ${error.message}</div>`;
+            });
+    });
+}
+
+/**
+ * Function to update the displayed list of monitored directories
+ */
+function updateMonitoredDirectoriesDisplay(data) {
+    safeDomOperation('monitored_directories', function(container) {
+        // Clear previous content
+        container.innerHTML = '';
+        
+        // Create header
+        const header = document.createElement('h4');
+        header.textContent = 'Monitored Network Directories';
+        container.appendChild(header);
+        
+        // Create timestamp info
+        if (data.last_scan) {
+            const timestamp = document.createElement('p');
+            timestamp.className = 'timestamp';
+            timestamp.textContent = `Last scan: ${data.last_scan}`;
+            container.appendChild(timestamp);
+        }
+        
+        // Create list of directories
+        if (data.directories && data.directories.length > 0) {
+            const list = document.createElement('ul');
+            list.className = 'directory-list';
+            
+            data.directories.forEach(dir => {
+                const item = document.createElement('li');
+                const dirName = document.createElement('strong');
+                dirName.textContent = dir.path || 'Unknown';
+                
+                item.appendChild(dirName);
+                
+                if (dir.status) {
+                    const status = document.createElement('span');
+                    status.className = `status ${dir.status.toLowerCase()}`;
+                    status.textContent = ` - ${dir.status}`;
+                    item.appendChild(status);
+                }
+                
+                if (dir.description) {
+                    const desc = document.createElement('p');
+                    desc.className = 'description';
+                    desc.textContent = dir.description;
+                    item.appendChild(desc);
+                }
+                
+                list.appendChild(item);
+            });
+            
+            container.appendChild(list);
+        } else {
+            const noData = document.createElement('p');
+            noData.className = 'alert alert-info';
+            noData.textContent = 'No monitored directories found.';
+            container.appendChild(noData);
+        }
+    });
+}
+
+// Start traffic monitoring and fetch monitored directories when page loads
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize service states object
+    window.serviceStates = window.serviceStates || {
+        networkMonitorRunning: false
+    };
+    
+    // Start traffic monitoring
     startTrafficMonitoring();
+    
+    // Fetch monitored directories if the container exists
+    safeDomOperation('monitored_directories', function() {
+        fetchMonitoredNetworkDirectories();
+    });
 });

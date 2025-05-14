@@ -29,6 +29,8 @@ import yara as yara_module
 import hashlib
 import json
 from pathlib import Path
+# Import network monitor integration module
+from network_monitor_integration import network_bp, get_monitored_network_directories
 import shutil
 
 # Import YARA scanner functionality
@@ -138,6 +140,9 @@ if os.path.exists(dotenv_path):
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'antivirus.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+# Register the network monitor integration blueprint
+app.register_blueprint(network_bp, url_prefix='/api/network')
 
 # Database models
 class User(UserMixin, db.Model):

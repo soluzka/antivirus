@@ -890,13 +890,23 @@ document.getElementById('start_folder_watcher_btn').onclick = function() {
         }
         
         function fetchNetworkMonitoredDirectories() {
-            fetch('/get_network_monitored_directories')
-                .then(response => response.json())
+            // Update to use the new API endpoint registered in app.py
+            fetch('/api/network/monitored_directories')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch monitored directories: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     updateNetworkMonitoredDirectoriesDisplay(data);
                 })
                 .catch(error => {
                     console.error('Error fetching network monitored directories:', error);
+                    const directoriesContainer = document.getElementById('monitored_directories');
+                    if (directoriesContainer) {
+                        directoriesContainer.innerHTML = `<div class="alert alert-warning">Error loading network monitored directories: ${error.message}</div>`;
+                    }
                 });
         }
         
