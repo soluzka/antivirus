@@ -125,7 +125,9 @@
     <div class="button-row">
         <button type="button" id="start_realtime_btn" style="background:#27ae60;color:#fff;">Start Real-Time Protection</button>
         <script>
-        document.getElementById('start_realtime_btn').onclick = async function() {
+        const startRealtimeBtn = document.getElementById('start_realtime_btn');
+        if (startRealtimeBtn) {
+            startRealtimeBtn.onclick = async function() {
     const btn = this;
     btn.disabled = true;
     btn.textContent = 'Starting...';
@@ -161,6 +163,7 @@
         btn.textContent = 'Start Real-Time Protection';
     }
 };
+}
         // Stop Real-Time Protection is disabled for security reasons.
 const stopRealtimeBtn = document.getElementById('stop_realtime_btn');
 if (stopRealtimeBtn) {
@@ -188,8 +191,16 @@ function folderWatcherHandler(action) {
         })
         .catch(error => { alert('Error: ' + error); btn.disabled = false; });
 }
-document.getElementById('start_folder_watcher_btn').onclick = function() { folderWatcherHandler('start'); };
-document.getElementById('stop_folder_watcher_btn').onclick = function() { folderWatcherHandler('stop'); };
+// Safely add click handlers for folder watcher buttons
+const startFolderBtn = document.getElementById('start_folder_watcher_btn');
+if (startFolderBtn) {
+    startFolderBtn.onclick = function() { folderWatcherHandler('start'); };
+}
+
+const stopFolderBtn = document.getElementById('stop_folder_watcher_btn');
+if (stopFolderBtn) {
+    stopFolderBtn.onclick = function() { folderWatcherHandler('stop'); };
+}
 // Safe Downloader
 function safeDownloaderHandler(action) {
     const btn = action === 'start' ? document.getElementById('start_safe_downloader_btn') : document.getElementById('stop_safe_downloader_btn');
@@ -210,8 +221,20 @@ function safeDownloaderHandler(action) {
         })
         .catch(error => { alert('Error: ' + error); btn.disabled = false; });
 }
-document.getElementById('start_safe_downloader_btn').onclick = function() { safeDownloaderHandler('start'); };
-document.getElementById('stop_safe_downloader_btn').onclick = function() { safeDownloaderHandler('stop'); };
+// Safely add safe downloader button handlers
+const startSafeDownloaderButton = document.getElementById('start_safe_downloader_btn');
+if (startSafeDownloaderButton) {
+    startSafeDownloaderButton.onclick = function() {
+        safeDownloaderHandler('start');
+    };
+}
+
+const stopSafeDownloaderButton = document.getElementById('stop_safe_downloader_btn');
+if (stopSafeDownloaderButton) {
+    stopSafeDownloaderButton.onclick = function() {
+        safeDownloaderHandler('stop');
+    };
+}
 // Auto Updates
 function autoUpdatesHandler(action) {
     const btn = action === 'start' ? document.getElementById('start_auto_updates_btn') : document.getElementById('stop_auto_updates_btn');
@@ -232,8 +255,16 @@ function autoUpdatesHandler(action) {
         })
         .catch(error => { alert('Error: ' + error); btn.disabled = false; });
 }
-document.getElementById('start_auto_updates_btn').onclick = function() { autoUpdatesHandler('start'); };
-document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpdatesHandler('stop'); };
+// Safely add click handlers for auto updates buttons
+const startAutoUpdatesBtn = document.getElementById('start_auto_updates_btn');
+if (startAutoUpdatesBtn) {
+    startAutoUpdatesBtn.onclick = function() { autoUpdatesHandler('start'); };
+}
+
+const stopAutoUpdatesBtn = document.getElementById('stop_auto_updates_btn');
+if (stopAutoUpdatesBtn) {
+    stopAutoUpdatesBtn.onclick = function() { autoUpdatesHandler('stop'); };
+}
 
         // Network monitor buttons
         var startNetBtn = document.getElementById('start_network_monitor_btn');
@@ -284,7 +315,9 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
             }
         };
 
-        document.getElementById('stop_realtime_btn').onclick = function() {
+        const stopRealtimeButton = document.getElementById('stop_realtime_btn');
+        if (stopRealtimeButton) {
+            stopRealtimeButton.onclick = function() {
             fetch('/stop_realtime', {method: 'POST'})
                 .then(async response => {
                     let text = await response.text();
@@ -303,8 +336,13 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                     }
                 })
                 .catch(error => alert('Error: ' + error));
-        };
-        document.getElementById('start_safe_downloader_btn').onclick = function() {
+            };
+        }
+        
+        // Safely add start safe downloader button handler
+        const startSafeDownloaderButton2 = document.getElementById('start_safe_downloader_btn');
+        if (startSafeDownloaderButton2) {
+            startSafeDownloaderButton2.onclick = function() {
             fetch('/toggle_safe_downloader/start', {method: 'POST'})
                 .then(async response => {
                     let text = await response.text();
@@ -323,8 +361,13 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                     }
                 })
                 .catch(error => alert('Error: ' + error));
-        };
-        document.getElementById('stop_safe_downloader_btn').onclick = function() {
+            };
+        }
+        
+        // Safely add stop safe downloader button handler
+        const stopSafeDownloaderButton2 = document.getElementById('stop_safe_downloader_btn');
+        if (stopSafeDownloaderButton2) {
+            stopSafeDownloaderButton2.onclick = function() {
             fetch('/toggle_safe_downloader/stop', {method: 'POST'})
                 .then(async response => {
                     let text = await response.text();
@@ -343,8 +386,13 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                     }
                 })
                 .catch(error => alert('Error: ' + error));
-        };
-        document.getElementById('start_auto_updates_btn').onclick = function() {
+            };
+        }
+        
+        // Safely add start auto updates button handler
+        const startAutoUpdatesButton = document.getElementById('start_auto_updates_btn');
+        if (startAutoUpdatesButton) {
+            startAutoUpdatesButton.onclick = function() {
             fetch('/start_auto_updates', {method: 'POST'})
                 .then(async response => {
                     let text = await response.text();
@@ -363,8 +411,13 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                     }
                 })
                 .catch(error => alert('Error: ' + error));
-        };
-        document.getElementById('stop_auto_updates_btn').onclick = function() {
+            };
+        }
+        
+        // Safely add stop auto updates button handler
+        const stopAutoUpdatesButton = document.getElementById('stop_auto_updates_btn');
+        if (stopAutoUpdatesButton) {
+            stopAutoUpdatesButton.onclick = function() {
             fetch('/stop_auto_updates', {method: 'POST'})
                 .then(async response => {
                     let text = await response.text();
@@ -383,7 +436,8 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                     }
                 })
                 .catch(error => alert('Error: ' + error));
-        };
+            };
+        }
         </script>
     </div>
 
@@ -1262,7 +1316,9 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
         });
     });
 
-    document.getElementById('start_network_monitor_btn').onclick = function() {
+    const startNetworkMonitorBtn = document.getElementById('start_network_monitor_btn');
+    if (startNetworkMonitorBtn) {
+        startNetworkMonitorBtn.onclick = function() {
         fetch('/toggle_network_monitor/start', {method: 'POST'})
             .then(async response => {
                 let text = await response.text();
@@ -1285,8 +1341,13 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                 }
             })
             .catch(error => alert('Error: ' + error));
-    };
-    document.getElementById('stop_network_monitor_btn').onclick = function() {
+        };
+    }
+    
+    // Safely add stop network monitor button handler
+    const stopNetworkMonitorBtn = document.getElementById('stop_network_monitor_btn');
+    if (stopNetworkMonitorBtn) {
+        stopNetworkMonitorBtn.onclick = function() {
         fetch('/toggle_network_monitor/stop', {method: 'POST'})
             .then(async response => {
                 let text = await response.text();
@@ -1305,7 +1366,8 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
                 }
             })
             .catch(error => alert('Error: ' + error));
-    };
+        };
+    }
     
     // Safely handle folder watcher button clicks
     const startFolderWatcherBtn = document.getElementById('start_folder_watcher_btn');
@@ -1454,7 +1516,11 @@ document.getElementById('stop_auto_updates_btn').onclick = function() { autoUpda
             });
         }
     }
-    document.getElementById('run_startup_btn').onclick = function() { performAction('run_startup'); };
+    // Safely add click handler for quick start button
+    const runStartupBtn = document.getElementById('run_startup_btn');
+    if (runStartupBtn) {
+        runStartupBtn.onclick = function() { performAction('run_startup'); };
+    }
     </script>
     </script>
     </div>
