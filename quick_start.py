@@ -14,6 +14,9 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from flask import Flask, render_template, request, jsonify, redirect, url_for, send_from_directory
 
+# Import DNS server functionality
+from dns_server import start_dns_server
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -1363,6 +1366,13 @@ class ServerInfo:
 
 if __name__ == '__main__':
     print("Starting clean Windows Defender app instance...")
+    
+    # Initialize DNS server and start it automatically
+    try:
+        dns_server, dns_resolver = start_dns_server(allow_network=False)  # Localhost only for security
+        logging.info("DNS server started automatically at application startup")
+    except Exception as e:
+        logging.error(f"Failed to start DNS server: {str(e)}. This is normal if not running as administrator.")
     
     import threading
     import queue

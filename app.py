@@ -37,6 +37,8 @@ from security.yara_scanner import load_yara_rules, scan_file_with_yara, scan_all
 from network_directories import get_network_monitored_directories
 # Import network monitor integration module
 from network_monitor_integration import register_network_monitor_endpoints
+# Import network traffic monitoring module
+from network_traffic_monitor import register_traffic_monitor_endpoints
 # Import network endpoint handler
 from network_endpoint import get_network_monitored_directories_handler
 import re
@@ -59,12 +61,22 @@ CORS(app)
 # Register network monitoring endpoints
 register_network_monitor_endpoints(app)
 
+# Register traffic monitoring endpoints
+register_traffic_monitor_endpoints(app)
+
 # Initialize network monitor instance at module level
 network_monitor = NetworkMonitor()
 
 # Automatically start network monitoring for real-time protection
 network_monitor.start()
 logging.info("Network monitoring started automatically at application startup")
+
+# Initialize DNS server and start it automatically
+try:
+    dns_server, dns_resolver = start_dns_server(allow_network=False)  # Localhost only for security
+    logging.info("DNS server started automatically at application startup")
+except Exception as e:
+    logging.error(f"Failed to start DNS server: {str(e)}. This is normal if not running as administrator.")
 
 # Add endpoints for traffic statistics
 @app.route('/get_traffic_stats', methods=['GET'])
@@ -1397,12 +1409,31 @@ def toggle_network_monitor(action):
 @app.route('/start_traffic_monitoring', methods=['POST'])
 @login_required
 def start_traffic_monitoring():
-    return toggle_network_monitor('start')
+    # Import the traffic monitoring start function
+    from network_traffic_monitor import start_traffic_monitoring as start_traffic_stats
+    
+    # Start traffic monitoring
+    success = start_traffic_stats()
+    
+    # Return success response
+    return jsonify({
+        'status': 'success' if success else 'warning',
+        'message': 'Traffic monitoring started' if success else 'Traffic monitoring is already running'
+    })
 
 @app.route('/stop_traffic_monitoring', methods=['POST'])
-@login_required
 def stop_traffic_monitoring():
-    return toggle_network_monitor('stop')
+    # Import the traffic monitoring stop function
+    from network_traffic_monitor import stop_traffic_monitoring as stop_traffic_stats
+    
+    # Stop traffic monitoring
+    success = stop_traffic_stats()
+    
+    # Return success response
+    return jsonify({
+        'status': 'success' if success else 'warning',
+        'message': 'Traffic monitoring stopped' if success else 'Traffic monitoring is not running'
+    })
 
 
 @app.route('/toggle_folder_watcher/<action>', methods=['POST'])
