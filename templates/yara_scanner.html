@@ -664,11 +664,34 @@ document.getElementById('start_folder_watcher_btn').onclick = function() {
             }
             
             // Fetch monitored directories from both network monitor and folder watcher
-            Promise.all([
-                fetch('/get_network_monitored_directories'),
-                fetch('/get_folder_watcher_paths')
-            ])
-            .then(responses => Promise.all(responses.map(response => response.json())))
+            // Use a more robust approach with individual error handling for each request
+            const networkMonitorPromise = fetch('/api/network/monitored_directories')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network monitor API returned ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.warn('Network monitor directories fetch failed:', error);
+                    // Return an empty result instead of failing the whole operation
+                    return { success: false, error: error.message, monitoring_status: { enabled: false, directories: [] } };
+                });
+                
+            const folderWatcherPromise = fetch('/get_folder_watcher_paths')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Folder watcher API returned ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.warn('Folder watcher paths fetch failed:', error);
+                    // Return an empty result instead of failing the whole operation
+                    return { success: false, error: error.message, folders: [] };
+                });
+                
+            Promise.all([networkMonitorPromise, folderWatcherPromise])
             .then(([networkData, folderData]) => {
                 // Hide loading indicator
                 if (loadingIndicator) {
