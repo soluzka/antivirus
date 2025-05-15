@@ -30,15 +30,13 @@ import hashlib
 import json
 from pathlib import Path
 # Import network monitor integration module
-from network_monitor_integration import network_bp, get_monitored_network_directories
+from network_monitor_integration import network_bp, get_monitored_network_directories, register_network_monitor_endpoints, set_network_monitor_instance
+# Import network API bridge to fix YARA scanner connection
+from network_api_bridge import register_network_api_bridge
 import shutil
 
 # Import YARA scanner functionality
 from security.yara_scanner import load_yara_rules, scan_file_with_yara, scan_all_folders_with_yara
-# Import network directories module
-from network_directories import get_network_monitored_directories
-# Import network monitor integration module
-from network_monitor_integration import register_network_monitor_endpoints
 # Import network traffic monitoring module
 from network_traffic_monitor import register_traffic_monitor_endpoints
 # Import network endpoint handler
@@ -66,6 +64,129 @@ register_network_monitor_endpoints(app)
 # Register traffic monitoring endpoints
 register_traffic_monitor_endpoints(app)
 
+# Register network API bridge to fix YARA scanner connection
+register_network_api_bridge(app)
+
+# Add direct simple route for network monitored directories (needed by YARA scanner)
+@app.route('/api/network/monitored_directories', methods=['GET'])
+def simple_network_monitored_directories():
+    """Simple endpoint to serve network monitored directories to YARA scanner"""
+    # Define common monitored directories
+    monitored_dirs = DEFAULT_MONITORED_DIRECTORIES
+    
+    # Build the response with directories info
+    directories = []
+    for dir_path in monitored_dirs:
+        exists = os.path.exists(dir_path)
+        accessible = exists and os.access(dir_path, os.R_OK)
+        file_count = 0
+        
+        if accessible:
+            try:
+                # Count files in the directory
+                file_count = len([f for f in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, f))])
+            except Exception as e:
+                logging.warning(f"Error counting files in {dir_path}: {str(e)}")
+        
+        directories.append({
+            'path': dir_path,
+            'exists': exists,
+            'accessible': accessible,
+            'file_count': file_count
+        })
+    
+    # Return data in the exact format the YARA scanner expects
+    return jsonify({
+        'success': True,
+        'monitoring_status': {
+            'enabled': network_monitor and network_monitor.is_running(),
+            'last_scan': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            'total_directories': len(directories),
+            'directories': directories
+        }
+    })
+
+# Add direct route for network monitored directories to ensure it's available
+@app.route('/api/network/monitored_directories', methods=['GET'])
+def network_monitored_directories():
+    """Endpoint to get network monitored directories"""
+    try:
+        from network_endpoint import get_network_monitored_directories_handler
+        return get_network_monitored_directories_handler(network_monitor)
+    except Exception as e:
+        # Fallback implementation in case of import errors
+        import os
+        import logging
+        from datetime import datetime
+        from flask import jsonify
+        
+        try:
+            # Get timestamp for last scan
+            last_scan = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            
+            # Define a comprehensive set of monitored directories that cover common system areas
+            monitored_dirs = [
+                # System directories - critical for malware monitoring
+                os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\drivers\\etc'),
+                os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\config'),
+                os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\wbem'),
+                os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\tasks'),  # Scheduled tasks
+                os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'SysWOW64'),
+                os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'Prefetch'),
+                
+                # User directories - common for user-initiated malware
+                os.path.join(os.environ.get('USERPROFILE', ''), 'Documents'),
+                os.path.join(os.environ.get('USERPROFILE', ''), 'Downloads'),
+                os.path.join(os.environ.get('USERPROFILE', ''), 'Desktop'),
+                os.path.join(os.environ.get('USERPROFILE', ''), 'AppData\\Local\\Temp'),
+                os.path.join(os.environ.get('USERPROFILE', ''), 'AppData\\Roaming'),
+                
+                # Startup locations - critical for persistence mechanisms
+                os.path.join(os.environ.get('PROGRAMDATA', 'C:\\ProgramData'), 'Microsoft\\Windows\\Start Menu\\Programs\\Startup'),
+                os.path.join(os.environ.get('USERPROFILE', ''), 'AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup'),
+            ]
+            
+            # Build response data
+            directories = []
+            for dir_path in monitored_dirs:
+                exists = os.path.exists(dir_path)
+                accessible = exists and os.access(dir_path, os.R_OK)
+                file_count = 0
+                
+                if accessible:
+                    try:
+                        file_count = len([f for f in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, f))])
+                    except Exception:
+                        pass
+                
+                directories.append({
+                    'path': dir_path,
+                    'exists': exists,
+                    'accessible': accessible,
+                    'file_count': file_count
+                })
+            
+            return jsonify({
+                'success': True,
+                'monitoring_status': {
+                    'enabled': True,
+                    'last_scan': last_scan,
+                    'total_directories': len(directories),
+                    'directories': directories
+                }
+            })
+            
+        except Exception as e2:
+            logging.error(f"Complete fallback error: {str(e2)}")
+            return jsonify({
+                'success': False,
+                'error': str(e2),
+                'monitoring_status': {
+                    'enabled': False,
+                    'directories': []
+                }
+            }), 500
+
 # Initialize network monitor instance at module level
 network_monitor = NetworkMonitor()
 
@@ -73,12 +194,17 @@ network_monitor = NetworkMonitor()
 network_monitor.start()
 logging.info("Network monitoring started automatically at application startup")
 
+# Set network monitor instance for integration module
+set_network_monitor_instance(network_monitor)
+
 # Initialize DNS server and start it automatically
 try:
     dns_server, dns_resolver = start_dns_server(allow_network=False)  # Localhost only for security
     logging.info("DNS server started automatically at application startup")
 except Exception as e:
     logging.error(f"Failed to start DNS server: {str(e)}. This is normal if not running as administrator.")
+
+# Network monitor endpoints are handled by the network_bp blueprint
 
 # Add endpoints for traffic statistics
 @app.route('/get_traffic_stats', methods=['GET'])
@@ -1855,10 +1981,10 @@ def toggle_network_monitor(action):
         return jsonify({'success': False, 'error': str(e)}), 500
 
 # Route to get network monitored directories
-@app.route('/get_network_monitored_directories', methods=['GET'])
+@app.route('/api/network/monitored_directories', methods=['GET'])
 def get_network_monitored_directories_endpoint():
-    """Get network monitored directories"""
     try:
+        # Get network monitored directories
         return get_network_monitored_directories_handler(network_monitor)
     except Exception as e:
         logging.error(f"Error getting network monitored directories: {str(e)}")

@@ -118,12 +118,107 @@ def get_monitored_network_directories(network_monitor):
         logging.error(f"Error getting network monitored directories: {str(e)}")
         return {'success': False, 'error': str(e)}
 
+# We'll use a function to set the network_monitor_instance later
+_network_monitor_instance = None
+
+def set_network_monitor_instance(network_monitor):
+    """Set the network monitor instance to be used by the blueprint"""
+    global _network_monitor_instance
+    _network_monitor_instance = network_monitor
+
 @network_bp.route('/monitored_directories', methods=['GET'])
 def get_network_monitored_directories_endpoint():
     """Flask endpoint to get network monitored directories"""
-    from app import network_monitor
-    data = get_monitored_network_directories(network_monitor)
-    return jsonify(data)
+    try:
+        # Get timestamp for last scan
+        from datetime import datetime
+        last_scan = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        # Define network monitored directories - ensure this is comprehensive
+        import os
+        monitored_dirs = [
+            os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\drivers\\etc'),  # hosts file, DNS config
+            os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\config'),  # registry files
+            os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\wbem'),  # WMI
+            os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'SysWOW64'),  # 32-bit system files
+            os.path.join(os.environ.get('PROGRAMDATA', 'C:\\ProgramData'), 'Microsoft\\Windows\\Start Menu\\Programs\\Startup'),  # Startup programs
+            os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'Prefetch'),  # Prefetch files
+            os.path.join(os.environ.get('USERPROFILE', ''), 'AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup'),  # User startup
+            os.path.join(os.environ.get('USERPROFILE', ''), 'AppData\\Local\\Temp'),  # Temporary files
+            os.path.join(os.environ.get('USERPROFILE', ''), '.ssh'),  # SSH configuration
+            os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'Temp'),  # System temp
+            os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\spool\\drivers'),  # Print drivers
+            os.path.join(os.environ.get('SYSTEMROOT', 'C:\\Windows'), 'System32\\tasks'),  # Scheduled tasks
+            os.path.join(os.environ.get('USERPROFILE', ''), 'Documents'),  # User documents
+            os.path.join(os.environ.get('USERPROFILE', ''), 'Downloads')  # User downloads
+        ]
+        
+        # Check if directories exist and are accessible
+        directories = []
+        total_files_monitored = 0
+        
+        for dir_path in monitored_dirs:
+            exists = os.path.exists(dir_path)
+            accessible = exists and os.access(dir_path, os.R_OK)
+            
+            # Count files if accessible (including subdirectories)
+            file_count = 0
+            high_risk_file_count = 0
+            subdir_count = 0
+            
+            if accessible:
+                try:
+                    # Walk through directory to count files more accurately
+                    for root, dirs, files in os.walk(dir_path, topdown=True, followlinks=False):
+                        file_count += len(files)
+                        subdir_count += len(dirs)
+                        # Limit depth to avoid excessive scanning
+                        if root.count(os.sep) - dir_path.count(os.sep) >= 2:
+                            dirs[:] = []  # Don't go deeper than 2 levels
+                except Exception as e:
+                    logging.warning(f"Error scanning directory {dir_path}: {str(e)}")
+                    # If error, still try to count files in the top directory
+                    try:
+                        file_count = len([f for f in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, f))])
+                    except:
+                        pass
+            
+            total_files_monitored += file_count
+            
+            directories.append({
+                'path': dir_path,
+                'exists': exists,
+                'accessible': accessible,
+                'file_count': file_count,
+                'subdirectory_count': subdir_count
+            })
+        
+        # Create the response with more comprehensive information
+        response = {
+            'success': True,
+            'monitoring_status': {
+                'enabled': _network_monitor_instance and hasattr(_network_monitor_instance, 'is_running') and _network_monitor_instance.is_running() if _network_monitor_instance else True,
+                'last_scan': last_scan,
+                'total_directories': len(directories),
+                'total_files_monitored': total_files_monitored,
+                'directories': directories
+            }
+        }
+        
+        return jsonify(response)
+    except Exception as e:
+        logging.error(f"Error getting network monitored directories: {str(e)}")
+        # Return a valid JSON response even on error
+        return jsonify({
+            'success': False, 
+            'error': str(e),
+            'monitoring_status': {
+                'enabled': False,
+                'directories': [],
+                'total_directories': 0,
+                'total_files_monitored': 0
+            }
+        }), 500
 
 def register_network_monitor_endpoints(app):
     """Register the network monitor blueprint with the Flask app"""

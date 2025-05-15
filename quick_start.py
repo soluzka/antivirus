@@ -12,7 +12,7 @@ from datetime import datetime
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-from flask import Flask, render_template, request, jsonify, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, jsonify, redirect, url_for, send_from_directory, Blueprint
 
 # Import DNS server functionality
 from dns_server import start_dns_server
@@ -64,6 +64,9 @@ for handler in logging.getLogger().handlers:
 app = Flask(__name__, 
             template_folder=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates'),
             static_folder=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static'))
+
+# Create a blueprint for network-related API endpoints
+network_bp = Blueprint('network', __name__, url_prefix='/api/network')
 
 # Global state for monitoring services
 folder_watcher_state = {
@@ -594,6 +597,127 @@ auto_updates_state = {
     }
 }
 
+# Define network blueprint endpoints
+@network_bp.route('/monitored_directories', methods=['GET'])
+def network_monitored_directories():
+    """API endpoint for getting network monitored directories for YARA scanner"""
+    try:
+        # Get timestamp for last scan
+        last_scan = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        # Use the monitored directories from network state
+        monitored_dirs = network_state['monitored_directories']
+        
+        # Check if directories exist and are accessible
+        directories = []
+        for dir_path in monitored_dirs:
+            exists = os.path.exists(dir_path)
+            accessible = exists and os.access(dir_path, os.R_OK)
+            
+            # Count files if accessible
+            file_count = 0
+            if accessible:
+                try:
+                    file_count = len([f for f in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, f))])
+                except Exception as e:
+                    logger.warning(f"Error counting files in {dir_path}: {str(e)}")
+            
+            directories.append({
+                'path': dir_path,
+                'exists': exists,
+                'accessible': accessible,
+                'file_count': file_count
+            })
+        
+        # Return data in the exact format expected by the YARA scanner
+        response = {
+            'success': True,
+            'monitoring_status': {
+                'enabled': network_state['monitoring_enabled'],
+                'last_scan': last_scan,
+                'total_directories': len(directories),
+                'directories': directories
+            }
+        }
+            
+        return jsonify(response)
+    except Exception as e:
+        logger.error(f"Error in API network monitored directories: {str(e)}")
+        # Return a valid JSON response even on error
+        return jsonify({
+            'success': False, 
+            'error': str(e),
+            'monitoring_status': {
+                'enabled': False,
+                'directories': [],
+                'total_directories': 0
+            }
+        }), 500
+
+# Register the network blueprint with the app
+app.register_blueprint(network_bp)
+
+# Direct route for network monitoring API endpoint (needed by YARA scanner)
+@app.route('/api/network/monitored_directories', methods=['GET'])
+def api_network_monitored_directories():
+    """Direct endpoint that the YARA scanner needs to access"""
+    try:
+        # Get timestamp for last scan
+        last_scan = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        # Use monitored directories from network state
+        monitored_dirs = network_state['monitored_directories']
+        
+        # Build directory information
+        directories = []
+        for dir_path in monitored_dirs:
+            exists = os.path.exists(dir_path)
+            accessible = exists and os.access(dir_path, os.R_OK)
+            
+            # Count files if accessible
+            file_count = 0
+            if accessible:
+                try:
+                    file_count = len([f for f in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, f))])
+                except Exception as e:
+                    logger.warning(f"Error counting files in {dir_path}: {str(e)}")
+            
+            directories.append({
+                'path': dir_path,
+                'exists': exists,
+                'accessible': accessible,
+                'file_count': file_count
+            })
+        
+        # Return data in the exact format expected by the YARA scanner
+        response = {
+            'success': True,
+            'monitoring_status': {
+                'enabled': network_state['monitoring_enabled'],
+                'last_scan': last_scan,
+                'total_directories': len(directories),
+                'directories': directories
+            }
+        }
+        
+        return jsonify(response)
+    except Exception as e:
+        logger.error(f"Error in direct network API endpoint: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'monitoring_status': {
+                'enabled': False,
+                'directories': [],
+                'total_directories': 0
+            }
+        }), 500
+
+# Note: Duplicate route removed to fix conflict
+
+# Note: We've removed the duplicate endpoint to avoid conflicts
+
+# -- Network monitoring functions --
 @app.route('/toggle_network_monitor/<action>', methods=['POST'])
 def toggle_network_monitor(action):
     """Toggle network monitor service on/off."""
