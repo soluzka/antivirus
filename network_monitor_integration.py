@@ -118,7 +118,7 @@ def get_monitored_network_directories(network_monitor):
         logging.error(f"Error getting network monitored directories: {str(e)}")
         return {'success': False, 'error': str(e)}
 
-@network_bp.route('/get_network_monitored_directories', methods=['GET'])
+@network_bp.route('/monitored_directories', methods=['GET'])
 def get_network_monitored_directories_endpoint():
     """Flask endpoint to get network monitored directories"""
     from app import network_monitor
