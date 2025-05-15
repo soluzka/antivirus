@@ -1871,11 +1871,25 @@ def get_folder_watcher_paths():
     try:
         # Get the paths from the folder watcher if it exists
         monitored_paths = []
-        if 'folder_watcher' in globals() and folder_watcher is not None:
+        folder_watcher_active = False
+        
+        # Try different ways to get monitored paths
+        if 'folder_watcher' in globals() and folder_watcher is not None and hasattr(folder_watcher, 'get_directories'):
+            monitored_paths = folder_watcher.get_directories()
+            folder_watcher_active = folder_watcher.is_running if hasattr(folder_watcher, 'is_running') else False
+        elif 'folder_watcher' in globals() and folder_watcher is not None and hasattr(folder_watcher, 'get_watched_folders'):
             monitored_paths = folder_watcher.get_watched_folders()
-        elif 'yara_scanner' in globals() and yara_scanner is not None:
+            folder_watcher_active = True
+        elif 'folder_watcher' in globals() and folder_watcher is not None and hasattr(folder_watcher, 'directories'):
+            monitored_paths = folder_watcher.directories
+            folder_watcher_active = folder_watcher.is_running if hasattr(folder_watcher, 'is_running') else False
+        elif 'yara_scanner' in globals() and yara_scanner is not None and hasattr(yara_scanner, 'get_monitored_folders'):
             # Try to get folders from YARA scanner as fallback
             monitored_paths = yara_scanner.get_monitored_folders()
+            folder_watcher_active = True
+        elif 'MONITORED_DIRECTORIES' in globals():
+            monitored_paths = MONITORED_DIRECTORIES
+            folder_watcher_active = True
         
         # If no paths are monitored, use default paths
         if not monitored_paths:
@@ -1884,10 +1898,25 @@ def get_folder_watcher_paths():
                 os.path.join(os.environ.get('USERPROFILE', ''), 'Desktop'),
                 os.path.join(os.environ.get('USERPROFILE', ''), 'Documents')
             ]
+            folder_watcher_active = False
+        
+        # Format the folders list to match expected structure
+        folders = []
+        for path in monitored_paths:
+            if path and isinstance(path, str):
+                exists = os.path.exists(path)
+                folders.append({
+                    'path': path,
+                    'exists': exists,
+                    'accessible': os.access(path, os.R_OK) if exists else False,
+                    'status': 'Active' if exists else 'Not found'
+                })
         
         return jsonify({
             'success': True,
-            'paths': monitored_paths
+            'folder_watcher_active': folder_watcher_active,
+            'folders': folders,
+            'paths': monitored_paths  # Include original paths for backward compatibility
         })
     except Exception as e:
         logging.error(f"Error getting folder watcher paths: {str(e)}")
