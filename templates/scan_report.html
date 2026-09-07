@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Defender - Scan Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .report-container { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin: 2rem auto; max-width: 1400px; }
+        .summary-card { display: inline-block; min-width: 140px; margin: 0.5rem; padding: 1rem; border-radius: 8px; background: #f1f3f5; text-align: center; }
+        .summary-card .value { font-size: 1.6rem; font-weight: bold; }
+        .table-wrap { margin-top: 2rem; }
+    </style>
+</head>
+<body>
+<div id="favicon-icon-overlay"><img src="{{ url_for('static', filename='favicon.ico') }}" alt="Shield"></div>
+    <div class="report-container">
+        <h2 class="text-center mb-4">Scan Report</h2>
+        <p class="text-center text-muted">Aggregated scan and threat statistics across all connected agents.</p>
+
+        <div class="text-center">
+            <div class="summary-card"><div class="value">{{ totals.files_scanned }}</div><div>Files Scanned</div></div>
+            <div class="summary-card"><div class="value">{{ totals.threats_blocked }}</div><div>Threats Blocked</div></div>
+            <div class="summary-card"><div class="value">{{ totals.total_findings }}</div><div>Total Findings</div></div>
+            <div class="summary-card"><div class="value">{{ totals.total_ransomware }}</div><div>Ransomware</div></div>
+            <div class="summary-card"><div class="value">{{ totals.total_persistence }}</div><div>Persistence</div></div>
+            <div class="summary-card"><div class="value">{{ totals.total_yara }}</div><div>YARA Hits</div></div>
+            <div class="summary-card"><div class="value">{{ totals.total_ml }}</div><div>ML Detections</div></div>
+            <div class="summary-card"><div class="value">{{ totals.quarantined_count }}</div><div>Quarantined</div></div>
+        </div>
+
+        {% if rows %}
+        <div class="table-wrap">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Device</th><th>Files Scanned</th><th>Threats Blocked</th>
+                        <th>Findings</th><th>Ransomware</th><th>Persistence</th>
+                        <th>YARA</th><th>ML</th><th>Quarantined</th><th>Last Report</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                    <tr class="{% if row.last_report_error %}table-warning{% endif %}">
+                        <td>{{ row.hostname }}</td>
+                        <td>{{ row.files_scanned }}</td>
+                        <td>{{ row.threats_blocked }}</td>
+                        <td>{{ row.total_findings }}</td>
+                        <td>{{ row.total_ransomware }}</td>
+                        <td>{{ row.total_persistence }}</td>
+                        <td>{{ row.total_yara }}</td>
+                        <td>{{ row.total_ml }}</td>
+                        <td>{{ row.quarantined_count }}</td>
+                        <td>
+                            {% if row.last_report_error %}
+                                <span class="text-danger">{{ row.last_report_error }}</span>
+                            {% elif row.last_report_ok %}
+                                <span class="text-success">OK</span>
+                            {% else %}
+                                <span class="text-muted">-</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center">No connected agents have reported scan data yet.</div>
+        {% endif %}
+
+        <p class="text-center mt-3"><a href="{{ url_for('index') }}">Back to dashboard</a></p>
+    </div>
+</body>
+</html>
