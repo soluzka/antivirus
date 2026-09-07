@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>429 Too Many Requests</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f9fa; text-align: center; margin-top: 5em; }
+        h1 { color: #e67e22; }
+        a { color: #2980b9; }
+    </style>
+</head>
+<body>
+    <div id="favicon-icon-overlay"><img src="{{ url_for('static', filename='favicon.ico') }}" alt="Shield"></div>
+    <h1>429 - Too Many Requests</h1>
+    <p>This service is temporarily rate-limited. Please wait a moment and try again.</p>
+    <a href="/">Return to Home</a>
+</body>
+</html>
