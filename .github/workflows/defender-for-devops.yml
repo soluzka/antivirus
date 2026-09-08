@@ -7,14 +7,13 @@
 # MSDO installs, configures and runs the latest versions of static analysis tools
 # (including, but not limited to, SDL/security and compliance tools).
 #
-# The Microsoft Security DevOps action is currently in beta and runs on the windows-latest queue,
-# as well as Windows self hosted agents. ubuntu-latest support coming soon.
+# The Microsoft Security DevOps action is currently in preview.
 #
-# For more information about the action , check out https://github.com/microsoft/security-devops-action
+# For more information about the action, see https://github.com/microsoft/security-devops-action
 #
-# Please note this workflow do not integrate your GitHub Org with Microsoft Defender For DevOps. You have to create an integration
-# and provide permission before this can report data back to azure.
-# Read the official documentation here : https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-github
+# Note: this workflow does not integrate your GitHub organization with Microsoft Defender for DevOps.
+# You must create the integration and grant permissions before results can be reported back to Azure.
+# Official docs: https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-github
 
 name: "Microsoft Defender for DevOps"
 
