@@ -35,14 +35,14 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Run Microsoft Security DevOps
-      uses: microsoft/security-devops-action@e94440350ed10e2806d47cd0d7504a2c51abdbe9 # v1.6.0
-      id: msdo
-    - name: Upload results to Security tab
-      uses: github/codeql-action/upload-sarif@v3
-      with:
-        sarif_file: ${{ steps.msdo.outputs.sarifFile }}
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Run Microsoft Security DevOps
+        uses: microsoft/security-devops-action@e94440350ed10e2806d47cd0d7504a2c51abdbe9 # v1.6.0
+        id: msdo
+      - name: Upload results to Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{ steps.msdo.outputs.sarifFile }}
