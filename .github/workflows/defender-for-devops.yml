@@ -38,9 +38,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: |
-          5.0.x
-          6.0.x
+        dotnet-version: 8.0.x
     - name: Run Microsoft Security DevOps
       uses: microsoft/security-devops-action@e94440350ed10e2806d47cd0d7504a2c51abdbe9 # v1.6.0
       id: msdo
