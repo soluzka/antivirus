@@ -28,6 +28,10 @@ on:
 
 jobs:
   MSDO:
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
     # currently only windows latest is supported
     runs-on: windows-latest
 
