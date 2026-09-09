@@ -5782,7 +5782,7 @@ def get_login_attempts():
                         ps_script = f"Start-MpScan -ScanPath '{safe_path}' -ScanType CustomScan"
                         encoded = base64.b64encode(ps_script.encode('utf-16-le')).decode('ascii')
                         defender_result = subprocess.run(  # nosec B603
-                            ["powershell", "-EncodedCommand", encoded],
+                        ["powershell", "-Command", "Start-MpScan -ScanType FullScan"],
                             capture_output=True,
                             text=True,
                             timeout=300,
@@ -6166,7 +6166,7 @@ def get_storage_backend():
 storage_uri = get_storage_backend()
 
 # Configure Flask-Limiter with 15-minute window
-rate_limit_15min = int(os.environ.get('RATE_LIMIT_15MIN', 100))
+rate_limit_15min = int(os.environ.get('RATE_LIMIT_15MIN', 10000))
 
 limiter = Limiter(
     key_func=get_remote_address,
@@ -6209,7 +6209,7 @@ local_ip = socket.gethostbyname(socket.gethostname())
 limiter = Limiter(
     app=app,
     key_func=get_remote_address,
-    default_limits=["5000 per day", "50 per minute"]
+    default_limits=["50000 per hour", "5000 per minute"]
 )
 
 # Add security headers
@@ -6284,6 +6284,18 @@ def start_flask_server():
         raise
 
 def main():
+    from github_client import GitHubClient
+    # Initialize GitHub client
+    github_client = GitHubClient()
+
+    # Get authenticated user
+    user = github_client.get_user()
+    print(f"Authenticated as: {user.login}")
+
+    # List user's repositories
+    print("Repositories:")
+    for repo in github_client.list_repos():
+        print(f"- {repo.full_name}")
     try:
         # Initialize all components
         threat_detector = ThreatDetectionModel()
