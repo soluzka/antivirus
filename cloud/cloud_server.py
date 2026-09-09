@@ -48,9 +48,12 @@ except ImportError:
 
 # Self-hosted license manager — RSA-signed keys, device locking, tiered features
 try:
-    from license_manager import LicenseManager, TIERS, get_tier_features, get_tier_display_name
+    from license_manager import (
+        LicenseManager, LicenseRecord, TIERS, get_tier_features, get_tier_display_name
+    )
 except ImportError:
     LicenseManager = None
+    LicenseRecord = None
     TIERS = {}
     def get_tier_features(t): return []
     def get_tier_display_name(t): return t
@@ -1957,23 +1960,28 @@ def purchase_success():
     existing = None
     if _license_manager and checkout_id:
         for lic_id, record in _license_manager._store.items():
-            if hasattr(record, 'customer') and record.customer == f'stripe_{checkout_id}':
+            if record.get('customer') == f'stripe_{checkout_id}':
                 existing = record
                 break
 
     if existing:
         # Return the existing license key instead of generating a new one
-        license_key = existing.license_key if hasattr(existing, 'license_key') else ''
-        # Reconstruct the key from the store
-        for lic_id, rec in _license_manager._store.items():
-            if rec.get('customer') == f'stripe_{checkout_id}':
-                # Found it — return the existing key
-                logger.info(f"Returning existing license for checkout {checkout_id}: {lic_id}")
-                break
-        record = existing
+        lic_id = next(
+            lic_id for lic_id, rec in _license_manager._store.items()
+            if rec.get('customer') == f'stripe_{checkout_id}'
+        )
+        license_key = _license_manager.get_license_key(lic_id)
+        record = LicenseRecord.from_dict(existing)
         if not license_key:
-            # Generate the key string from the stored record
-            license_key = f"IB-{lic_id}"
+            logger.error("Stored license %s has no recoverable license key", lic_id)
+            return render_template_string('''
+            <!doctype html><html><head><title>Purchase Error</title>
+            <meta charset="UTF-8"></head><body>
+            <h1>License recovery failed</h1>
+            <p>This purchase needs to be reissued. Please contact support.</p>
+            </body></html>
+            '''), 500
+        logger.info(f"Returning existing license for checkout {checkout_id}: {lic_id}")
     else:
         # Generate a one-time purchase license (1 device, never expires)
         # Tag the customer with the checkout ID to prevent duplicate generation
@@ -2026,7 +2034,7 @@ def purchase_success_email():
     for lic_id, record in _license_manager._store.items():
         rec = record if isinstance(record, dict) else record.__dict__
         if rec.get('customer') == f'stripe_{checkout_id}':
-            license_key = f"IB-{lic_id}"
+            license_key = _license_manager.get_license_key(lic_id)
             machine_id = rec.get('machine_id', '') or rec.get('instance_name', '')
             break
     if not license_key:

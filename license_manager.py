@@ -103,6 +103,7 @@ class LicenseRecord:
     issued_at: int
     expires_at: int  # 0 = never
     customer: str
+    license_key: str = ""
     revoked: bool = False
     activations: List[Dict[str, Any]] = field(default_factory=list)
 
@@ -119,6 +120,7 @@ class LicenseRecord:
             issued_at=d.get("issued_at", 0),
             expires_at=d.get("expires_at", 0),
             customer=d.get("customer", ""),
+            license_key=d.get("license_key", ""),
             revoked=d.get("revoked", False),
             activations=d.get("activations", []),
         )
@@ -263,11 +265,44 @@ class LicenseManager:
             issued_at=issued_at,
             expires_at=expires_at,
             customer=customer,
+            license_key=license_key,
         )
         self._store[lic_id] = record.to_dict()
         self._save_store()
 
         return license_key, record
+
+    def get_license_key(self, license_id: str) -> Optional[str]:
+        """Return the signed key for a stored license, repairing older records."""
+        record = self._store.get(license_id)
+        if not record:
+            return None
+        if record.get("license_key"):
+            return record["license_key"]
+
+        payload = {
+            "id": license_id,
+            "tier": record.get("tier", "one_time"),
+            "features": record.get("features", []),
+            "max_devices": record.get("max_devices", 1),
+            "issued_at": record.get("issued_at", 0),
+            "expires_at": record.get("expires_at", 0),
+            "customer": record.get("customer", ""),
+        }
+        payload_json = json.dumps(payload, separators=(",", ":"), sort_keys=True)
+        signature = self._private_key.sign(
+            payload_json.encode("utf-8"),
+            padding.PKCS1v15(),
+            hashes.SHA256(),
+        )
+        license_key = (
+            f"IB-{base64.urlsafe_b64encode(payload_json.encode('utf-8')).decode('ascii')}."
+            f"{base64.urlsafe_b64encode(signature).decode('ascii')}"
+        )
+        record["license_key"] = license_key
+        self._store[license_id] = record
+        self._save_store()
+        return license_key
 
     # ---- License validation ----
 
@@ -553,4 +588,3 @@ def generate_machine_id() -> str:
 def hash_machine_id(machine_id: str) -> str:
     """Hash a machine ID for storage/lookup (one-way)."""
     return hashlib.sha256(machine_id.encode("utf-8")).hexdigest()[:32]
-
