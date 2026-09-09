@@ -1128,4 +1128,25 @@ rule Fernet_Encrypted_File {
         $key_header at 0
 }
 
+// Unresolved high-entropy blob embedded in data_analysis.py (the `data = ...` sample
+// string). Forensic analysis (entropy ~6.3-6.7, no valid base64/Fernet structure, no
+// XOR/AES/RC4/repeating-key match against common keys or the repo's own FERNET_KEY
+// values, no decompression match) could not recover plaintext from this blob. It is
+// most likely inert placeholder/test data rather than real ciphertext, but is fingerprinted
+// here so any file containing this exact sample (e.g. copies of data_analysis.py, or the
+// same string embedded elsewhere) is flagged for review rather than silently ignored.
+rule Unresolved_HighEntropy_DataAnalysis_Blob {
+    meta:
+        description = "Detects the specific unidentified high-entropy sample blob from data_analysis.py; could not be decrypted/decoded during forensic review"
+        author = "Copilot forensic triage"
+        date = "2026-09-09"
+        length_bytes = 1618
+        status = "unresolved - flag for manual review, do not assume malicious without further context"
+    strings:
+        $prefix = { 33 3d 55 b3 5c ac b6 36 7c 63 f2 5c 75 30 30 30 30 66 e3 a3 dc 5c 75 30 30 31 62 6e 3e 5d 55 e3 ca }
+        $suffix = { 4f 2d d9 55 b5 c6 cb 33 b5 b1 b6 a9 6e 3c a7 f2 }
+    condition:
+        $prefix at 0 or $suffix at (filesize - 16)
+}
+
 
