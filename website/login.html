@@ -364,9 +364,10 @@
                     msg += ' (' + data.activations_used + '/' + data.max_devices + ' devices used)';
                     setActivateResult(msg, false);
                     document.getElementById('launchBtn').disabled = false;
-                    // Also pass to native host for offline use
+                    // Also pass the original signed key to the native host.
+                    // The activation response contains metadata, not a license key.
                     if (typeof window.SoluzkaHost !== 'undefined') {
-                        try { window.SoluzkaHost.LoadLicense(JSON.stringify(data)); } catch(e) {}
+                        try { window.SoluzkaHost.LoadLicense(licKey); } catch(e) {}
                     }
                 } else {
                     setActivateResult('Activation failed: ' + (data.error || 'Invalid license'), true);
