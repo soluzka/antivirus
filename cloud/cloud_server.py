@@ -6147,6 +6147,10 @@ def create_cloud_app():
             '/api/license/validate',
             '/api/license/activate',
             '/api/license/deactivate',
+            # Login re-authenticates with the license key + password on every
+            # call, so it doesn't rely on the browser session's CSRF token —
+            # and a stale session (e.g. re-login) would otherwise fail here.
+            '/api/user/login',
         },
     )
 
