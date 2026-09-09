@@ -1,7 +1,5 @@
 # Security Policy
 
-## Supported Versions
-
 Security fixes are applied to the current release line shown in `version.txt`.
 The current project version is **1.0.966.0**.
 
