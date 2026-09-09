@@ -1754,7 +1754,10 @@ def ml_status():
 def cloud_user_login():
     """User login with self-hosted IB- license key — no third-party dependency."""
     data = request.get_json(silent=True) or {}
-    license_key = sanitize_text(data.get('license') or request.form.get('license'), max_length=256)
+    # Signed license keys embed a base64 payload (tier, features, customer email,
+    # etc.) plus an RSA signature, so they can run well past 256 chars. Use a
+    # generous max_length to avoid silently truncating the key before validation.
+    license_key = sanitize_text(data.get('license') or request.form.get('license'), max_length=4096)
     username = sanitize_text(data.get('username') or request.form.get('username'), max_length=64)
     password = (data.get('password') or request.form.get('password') or '').strip()
     machine_id = (data.get('machine_id') or request.form.get('machine_id') or '').strip()
